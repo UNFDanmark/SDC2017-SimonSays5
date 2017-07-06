@@ -7,13 +7,15 @@ package com.example.deltager.simonsays5;
 public class Player {
 
     private GameController gameController;
+    private int playerID;
 
-    public Player(GameController gameController){
+    public Player(int playerID, GameController gameController){
+        this.playerID = playerID;
         this.gameController = gameController;
     }
 
     public void TrykkedePåEnFarve (char farve){
-
+         gameController.spillerValgteFarve(playerID, farve);
     }
 
 

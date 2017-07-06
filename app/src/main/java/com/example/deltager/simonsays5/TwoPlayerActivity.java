@@ -19,9 +19,9 @@ public class TwoPlayerActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player2);
 
-        gameController = new GameController();
-        player1 = new Player(gameController);
-        player2 = new Player(gameController);
+        gameController = new GameController(this);
+        player1 = new Player(1, gameController);
+        player2 = new Player(2, gameController);
     }
 
     private void P2TrykkedePåenFarve(char farve){

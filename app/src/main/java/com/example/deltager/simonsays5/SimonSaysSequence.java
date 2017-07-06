@@ -22,4 +22,8 @@ public class SimonSaysSequence {
     public void addChar(char tilda){
         seq += tilda;
     }
+
+    public int getAmount() {
+        return seq.length();
+    }
 }
