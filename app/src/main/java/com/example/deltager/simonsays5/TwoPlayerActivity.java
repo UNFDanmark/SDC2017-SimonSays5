@@ -28,19 +28,19 @@ public class TwoPlayerActivity extends Activity{
         player2.TrykkedePåEnFarve(farve);
     }
 
-    private  void P2TrykkedePåRød(View view){
+    public void P2TrykkedePåRød(View view){
         P2TrykkedePåenFarve('R');
     }
 
-    private  void P2TrykkedePåGrøn(View view){
+    public void P2TrykkedePåGrøn(View view){
         P2TrykkedePåenFarve('G');
     }
 
-    private  void P2TrykkedePåBlå(View view){
+    public void P2TrykkedePåBlå(View view){
         P2TrykkedePåenFarve('B');
     }
 
-    private  void P2TrykkedePåGul(View view){
+    public void P2TrykkedePåGul(View view){
         P2TrykkedePåenFarve('Y');
     }
 
@@ -48,19 +48,33 @@ public class TwoPlayerActivity extends Activity{
         player1.TrykkedePåEnFarve(farve);
     }
 
-    private  void P1TrykkedePåRød(View view){
+    public void P1TrykkedePåRød(View view){
         P1TrykkedePåenFarve('R');
     }
 
-    private  void P1TrykkedePåGrøn(View view){
+    public void P1TrykkedePåGrøn(View view){
         P1TrykkedePåenFarve('G');
     }
 
-    private  void P1TrykkedePåBlå(View view){
+    public void P1TrykkedePåBlå(View view){
         P1TrykkedePåenFarve('B');
     }
 
-    private  void P1TrykkedePåGul(View view){
+    public void P1TrykkedePåGul(View view){
         P1TrykkedePåenFarve('Y');
+    }
+
+    public void farveSkift(final View view, int color, int tid) {
+        //findViewById(R.id.buttonP1)
+
+        int startColor = view.getSolidColor();
+        view.setBackgroundColor(color);
+
+        CountDownTimer timer = new CountDownTimer(tid, tid) {
+            public void onFinish() {
+                view.setBackgroundColor(startColor);
+            }
+        }.start();
+
     }
 }
