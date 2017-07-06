@@ -5,9 +5,21 @@ package com.example.deltager.simonsays5;
  */
 
 public class SimonSaysSequence {
-    private String seq = "";
+    private String seq;
 
     public SimonSaysSequence(String seq){
+        this.seq = seq;
+    }
 
+    public SimonSaysSequence(){
+        seq = "";
+    }
+
+    public char charAt(int index){
+        return seq.charAt(index);
+    }
+
+    public void addChar(char tilda){
+        seq += tilda;
     }
 }
