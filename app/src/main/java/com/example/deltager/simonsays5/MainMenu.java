@@ -11,6 +11,6 @@ public class MainMenu extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        //Hej
+        //Hej 2
     }
 }
