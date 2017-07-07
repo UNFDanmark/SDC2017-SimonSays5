@@ -2,7 +2,6 @@ package com.example.deltager.simonsays5;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
@@ -94,6 +93,7 @@ public class TwoPlayerActivity extends Activity{
     }
 
     public void setMiddleText(String nyText){
-        ((TextView)findViewById(R.id.MiddelText)).setText(nyText);
+        ((TextView)findViewById(R.id.MiddelText1)).setText(nyText);
+        ((TextView)findViewById(R.id.MiddelText2)).setText(nyText);
     }
 }

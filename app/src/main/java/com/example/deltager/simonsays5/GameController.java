@@ -24,17 +24,16 @@ public class GameController {
     public void spillerValgteFarve (int playerID, char farve){
         lightButton(playerID, farve);
         if(activePlayer == playerID){
-
-            twoPlayerActivity.setMiddleText("Player " + playerID + " trykkede på en farve " + farve);
-
             if(addColor){
                 addColorToSequence(farve);
                 ChangePlayer();
+                twoPlayerActivity.setMiddleText("player " + activePlayer + " START!");
             }
             else{
                 if(CheckCorrectSequenceColor(farve)){
                     IncrementColorIndex();
                     if(HasFinishedSequence()){
+                        twoPlayerActivity.setMiddleText("player " + activePlayer + " choose color!");
                         playerSuccede();
                     }
                 } else {
@@ -45,7 +44,6 @@ public class GameController {
     }
 
     private void addColorToSequence(char color){
-        twoPlayerActivity.setMiddleText("Player " + activePlayer + " added color " + color);
         sequence.addChar(color);
         addColor = false;
         lightButton(GetNextPlayerID(), color);
@@ -111,8 +109,6 @@ public class GameController {
     Player has succesfully remembered the sequence
      */
     private void playerSuccede(){
-        twoPlayerActivity.setMiddleText("player " + activePlayer + " succede");
-
         addColor = true;
 
         //Test
@@ -124,7 +120,7 @@ public class GameController {
      */
     private void ChangePlayer(){
         currentColorIndex = 0;
-        twoPlayerActivity.setMiddleText("Changing player to " + GetNextPlayerID());
+        twoPlayerActivity.setMiddleText("Changed player to " + GetNextPlayerID());
         activePlayer = GetNextPlayerID();
     }
 

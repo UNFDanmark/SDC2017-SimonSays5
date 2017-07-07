@@ -4,6 +4,38 @@
     android:layout_height="match_parent">
 
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/MiddelText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/MiddelText1"
+            android:layout_alignLeft="@+id/MiddelText1"
+            android:layout_alignStart="@+id/MiddelText1"
+            android:gravity="center"
+            android:rotation="180"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/MiddelText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="377dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+    </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -93,15 +125,8 @@
             android:background="#ea4335"
             android:onClick="P1TrykkedePåRød"
             android:text="" />
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/MiddelText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textSize="30sp" />
+    </LinearLayout>
 
 
 </RelativeLayout>
