@@ -2,6 +2,7 @@ package com.example.deltager.simonsays5;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.view.View;
 
@@ -50,6 +51,7 @@ public class TwoPlayerActivity extends Activity{
 
     public void P1TrykkedePåRød(View view){
         P1TrykkedePåenFarve('R');
+        farveSkift(findViewById(R.id.buttonP1),0xFFFBBC05,5000);
     }
 
     public void P1TrykkedePåGrøn(View view){
@@ -65,14 +67,14 @@ public class TwoPlayerActivity extends Activity{
     }
 
     public void farveSkift(final View view, int color, int tid) {
-        //findViewById(R.id.buttonP1)
-
-        int startColor = view.getSolidColor();
+        final int startColor = view.getSolidColor();
         view.setBackgroundColor(color);
 
-        CountDownTimer timer = new CountDownTimer(tid, tid) {
-            public void onFinish() {
-                view.setBackgroundColor(startColor);
+        new CountDownTimer(tid, tid) {
+            public void onTick(long millisUntilFinished){
+            }
+
+            public void onFinish() {view.setBackgroundColor(startColor);
             }
         }.start();
 
