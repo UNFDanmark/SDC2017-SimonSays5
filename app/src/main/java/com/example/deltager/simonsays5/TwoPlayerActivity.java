@@ -14,6 +14,7 @@ public class TwoPlayerActivity extends Activity{
 
     private GameController gameController;
     private Player player1, player2;
+
     //player 1; knapper
     public simonSaysButton p1RødKnap, p1BlåKnap, p1GrønKnap, p1GulKnap;
 

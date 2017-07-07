@@ -75,7 +75,7 @@ public class GameController {
     }
 
     /*
-    Chnages the active player from 1 -> 2 or 2 -> 1
+    Changes the active player from 1 -> 2 or 2 -> 1
      */
     private void ChangePlayer(){
         activePlayer = (activePlayer==1?2:1);
