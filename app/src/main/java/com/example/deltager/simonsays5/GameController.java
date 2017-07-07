@@ -22,15 +22,16 @@ public class GameController {
     }
 
     public void spillerValgteFarve (int playerID, char farve){
+        //Tjek om det er den spiller vi venter på
         if(activePlayer == playerID){
-            if(addColor){
+            if(addColor){ //Tjek om det er en farve vi skal tilføje til sekvensen
                 addColorToSequence(farve);
                 ChangePlayer();
             }
             else{
                 if(CheckCorrectSequenceColor(farve)){
                     IncrementColorIndex();
-                    if(HasFinishedSequence()){
+                    if(HasFinishedSequence()){ //Er indexet lige med længden så er vi færdig med sekvensen
                         playerSuccede();
                     }
                 } else {
