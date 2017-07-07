@@ -14,6 +14,8 @@ public class TwoPlayerActivity extends Activity{
 
     private GameController gameController;
     private Player player1, player2;
+    public simonSaysButton p1RødKnap;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,6 +25,8 @@ public class TwoPlayerActivity extends Activity{
         gameController = new GameController(this);
         player1 = new Player(1, gameController);
         player2 = new Player(2, gameController);
+
+        p1RødKnap = new simonSaysButton(0xFFFF5F51, 0xFFEA4335, findViewById(R.id.RedP1Btn));
     }
 
     private void P2TrykkedePåenFarve(char farve){
@@ -51,7 +55,6 @@ public class TwoPlayerActivity extends Activity{
 
     public void P1TrykkedePåRød(View view){
         P1TrykkedePåenFarve('R');
-        farveSkift(findViewById(R.id.buttonP1),0xFFFBBC05,5000);
     }
 
     public void P1TrykkedePåGrøn(View view){
@@ -66,17 +69,5 @@ public class TwoPlayerActivity extends Activity{
         P1TrykkedePåenFarve('Y');
     }
 
-    public void farveSkift(final View view, int color, int tid) {
-        final int startColor = view.getSolidColor();
-        view.setBackgroundColor(color);
 
-        new CountDownTimer(tid, tid) {
-            public void onTick(long millisUntilFinished){
-            }
-
-            public void onFinish() {view.setBackgroundColor(startColor);
-            }
-        }.start();
-
-    }
 }
