@@ -22,16 +22,19 @@ public class GameController {
     }
 
     public void spillerValgteFarve (int playerID, char farve){
-        //Tjek om det er den spiller vi venter på
+        lightButton(playerID, farve);
         if(activePlayer == playerID){
-            if(addColor){ //Tjek om det er en farve vi skal tilføje til sekvensen
+
+            twoPlayerActivity.setMiddleText("Player " + playerID + " trykkede på en farve " + farve);
+
+            if(addColor){
                 addColorToSequence(farve);
                 ChangePlayer();
             }
             else{
                 if(CheckCorrectSequenceColor(farve)){
                     IncrementColorIndex();
-                    if(HasFinishedSequence()){ //Er indexet lige med længden så er vi færdig med sekvensen
+                    if(HasFinishedSequence()){
                         playerSuccede();
                     }
                 } else {
@@ -42,7 +45,44 @@ public class GameController {
     }
 
     private void addColorToSequence(char color){
+        twoPlayerActivity.setMiddleText("Player " + activePlayer + " added color " + color);
         sequence.addChar(color);
+        addColor = false;
+        lightButton(GetNextPlayerID(), color);
+    }
+
+    private void lightButton(int activePlayer, char V) {
+
+        if (activePlayer == 1) {
+            if (V == 'B') {
+                twoPlayerActivity.p1BlåKnap.btnBlink();
+            }
+            else if (V == 'R') {
+                twoPlayerActivity.p1RødKnap.btnBlink();
+            }
+            else if (V == 'G') {
+                twoPlayerActivity.p1GrønKnap.btnBlink();
+            }
+            else if (V == 'Y') {
+                twoPlayerActivity.p1GulKnap.btnBlink();
+            }
+        }
+        else {
+            if (V == 'B') {
+                twoPlayerActivity.p2BlåKnap.btnBlink();
+            }
+            else if (V == 'R') {
+                twoPlayerActivity.p2RødKnap.btnBlink();
+            }
+            else if (V == 'G') {
+                twoPlayerActivity.p2GrønKnap.btnBlink();
+            }
+            else if (V == 'Y') {
+                twoPlayerActivity.p2GulKnap.btnBlink();
+            }
+        }
+
+
     }
 
     private void IncrementColorIndex(){
@@ -61,14 +101,18 @@ public class GameController {
     The active player has lost
      */
     private void PlayerLost(){
+        twoPlayerActivity.setMiddleText("player " + activePlayer + " lost");
         //Test
         Log.i("Player", "Player " + activePlayer + " LOST!!");
+        twoPlayerActivity.playerLost(activePlayer);
     }
 
     /*
     Player has succesfully remembered the sequence
      */
     private void playerSuccede(){
+        twoPlayerActivity.setMiddleText("player " + activePlayer + " succede");
+
         addColor = true;
 
         //Test
@@ -79,6 +123,17 @@ public class GameController {
     Changes the active player from 1 -> 2 or 2 -> 1
      */
     private void ChangePlayer(){
-        activePlayer = (activePlayer==1?2:1);
+        currentColorIndex = 0;
+        twoPlayerActivity.setMiddleText("Changing player to " + GetNextPlayerID());
+        activePlayer = GetNextPlayerID();
+    }
+
+    private int GetNextPlayerID(){
+        if(activePlayer == 1){
+            return 2;
+        }else if (activePlayer == 2){
+            return 1;
+        }
+        return -1;
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * Created by deltager on 06-07-17.
@@ -33,14 +34,23 @@ public class TwoPlayerActivity extends Activity{
 
         p1RødKnap = new simonSaysButton(0xFFFF5F51, 0xFFEA4335, findViewById(R.id.RedP1Btn));
         p1BlåKnap = new simonSaysButton(0xFF6694FF, 0xFF4285F4, findViewById(R.id.BlueP1Bnt));
-        p1GrønKnap = new simonSaysButton(0xFF2EEB74, 0xFF47E571, findViewById(R.id.GreenP1Bnt));
+        p1GrønKnap = new simonSaysButton(0xFF2EEB74, 0xFF34A853, findViewById(R.id.GreenP1Bnt));
         p1GulKnap = new simonSaysButton(0xFFFFCE4F, 0xFFFBBC05, findViewById(R.id.yellowP1Btn));
 
         p2RødKnap = new simonSaysButton(0xFFFF5F51, 0xFFEA4335, findViewById(R.id.redP2Btn));
         p2BlåKnap = new simonSaysButton(0xFF6694FF, 0xFF4285F4, findViewById(R.id.blueP2Btn));
-        p2GrønKnap = new simonSaysButton(0xFF2EEB74, 0xFF47E571, findViewById(R.id.greenP2Btn));
+        p2GrønKnap = new simonSaysButton(0xFF47E571, 0xFF34A853, findViewById(R.id.greenP2Btn));
         p2GulKnap = new simonSaysButton(0xFFFFCE4F, 0xFFFBBC05, findViewById(R.id.yellowP2Btn));
 
+    }
+
+    public void playerLost (int activePlayer){
+         if (activePlayer == 1) {
+
+         }
+         else if (activePlayer == 0) {
+
+         }
     }
 
     private void P2TrykkedePåenFarve(char farve){
@@ -83,5 +93,7 @@ public class TwoPlayerActivity extends Activity{
         P1TrykkedePåenFarve('Y');
     }
 
-
+    public void setMiddleText(String nyText){
+        ((TextView)findViewById(R.id.MiddelText)).setText(nyText);
+    }
 }

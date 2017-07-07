@@ -19,8 +19,8 @@ public class SimonSaysSequence {
         return seq.charAt(index);
     }
 
-    public void addChar(char tilda){
-        seq += tilda;
+    public void addChar(char nytBogstav){
+        seq += nytBogstav;
     }
 
     public int getAmount() {
