@@ -42,7 +42,7 @@
         <Button
             android:id="@+id/yellowP2Btn"
             android:layout_width="fill_parent"
-            android:layout_height="87dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:background="#fbbc05"
             android:onClick="P2TrykkedePåGul"
@@ -61,7 +61,7 @@
         <Button
             android:id="@+id/yellowP1Btn"
             android:layout_width="fill_parent"
-            android:layout_height="87dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:background="#fbbc05"
             android:onClick="P1TrykkedePåGul"
