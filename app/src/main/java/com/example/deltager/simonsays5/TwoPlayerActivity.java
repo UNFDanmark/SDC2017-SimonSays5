@@ -14,7 +14,11 @@ public class TwoPlayerActivity extends Activity{
 
     private GameController gameController;
     private Player player1, player2;
-    public simonSaysButton p1RødKnap;
+    //player 1; knapper
+    public simonSaysButton p1RødKnap, p1BlåKnap, p1GrønKnap, p1GulKnap;
+
+    //player 2; knapper
+    public simonSaysButton p2RødKnap, p2BlåKnap, p2GrønKnap, p2GulKnap;
 
 
     @Override
@@ -27,6 +31,15 @@ public class TwoPlayerActivity extends Activity{
         player2 = new Player(2, gameController);
 
         p1RødKnap = new simonSaysButton(0xFFFF5F51, 0xFFEA4335, findViewById(R.id.RedP1Btn));
+        p1BlåKnap = new simonSaysButton(0xFF6694FF, 0xFF4285F4, findViewById(R.id.BlueP1Bnt));
+        p1GrønKnap = new simonSaysButton(0xFF2EEB74, 0xFF47E571, findViewById(R.id.GreenP1Bnt));
+        p1GulKnap = new simonSaysButton(0xFFFFCE4F, 0xFFFBBC05, findViewById(R.id.yellowP1Btn));
+
+        p2RødKnap = new simonSaysButton(0xFFFF5F51, 0xFFEA4335, findViewById(R.id.redP2Btn));
+        p2BlåKnap = new simonSaysButton(0xFF6694FF, 0xFF4285F4, findViewById(R.id.blueP2Btn));
+        p2GrønKnap = new simonSaysButton(0xFF2EEB74, 0xFF47E571, findViewById(R.id.greenP2Btn));
+        p2GulKnap = new simonSaysButton(0xFFFFCE4F, 0xFFFBBC05, findViewById(R.id.yellowP2Btn));
+
     }
 
     private void P2TrykkedePåenFarve(char farve){
