@@ -101,6 +101,7 @@ public class GameController {
      */
     private void PlayerLost(){
         twoPlayerActivity.setMiddleText("player " + activePlayer + " lost");
+        twoPlayerActivity.StartBackgroundBlinking();
         //Test
         Log.i("Player", "Player " + activePlayer + " LOST!!");
         twoPlayerActivity.playerLost(activePlayer);
@@ -121,6 +122,7 @@ public class GameController {
      */
     private void ChangePlayer(){
         currentColorIndex = 0;
+        //getWindow().getDecorView().setBackgroundColor(0xFFC3FFF7);
         twoPlayerActivity.setMiddleText("Changed player to " + GetNextPlayerID());
         activePlayer = GetNextPlayerID();
     }

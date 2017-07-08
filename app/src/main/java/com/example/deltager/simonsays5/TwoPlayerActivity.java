@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 
 /**
@@ -27,6 +28,9 @@ public class TwoPlayerActivity extends Activity{
 
     private int blinkingInterval = 300;
 
+    private int bgBlinkTime = 500, bgStartFarve;
+    private boolean bgIsBlinking, bgIsColorOn;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,7 @@ public class TwoPlayerActivity extends Activity{
         p2GrønKnap = new simonSaysButton(0xFF17BB4A, 0xFF34A853, findViewById(R.id.greenP2Btn));
         p2GulKnap = new simonSaysButton(0xFFFFD430, 0xFFFBBC05, findViewById(R.id.yellowP2Btn));
 
+        bgStartFarve = getWindow().getDecorView().getSolidColor();
     }
 
     public void P1BtnStartBlinking(){
@@ -108,6 +113,36 @@ public class TwoPlayerActivity extends Activity{
             }
         }.start();
 
+    }
+
+    public void StartBackgroundBlinking(){
+        bgIsBlinking = true;
+        final View v = getWindow().getDecorView();
+
+        new CountDownTimer(bgBlinkTime, bgBlinkTime){
+            public void onTick(long millisUntilFinished){
+                if(bgIsColorOn == false){
+                    //findViewById(R.id.relativeLayoutBase).getRootView().setBackgroundColor(0xFFC3FFF7);
+                    //v.setBackgroundColor(0xFFC3FFF7);
+                    bgIsColorOn = true;
+                }
+                else if(bgIsColorOn == true){
+                    //findViewById(R.id.relativeLayoutBase).getRootView().setBackgroundColor(bgStartFarve);
+                    //v.setBackgroundColor(bgStartFarve);
+                    bgIsColorOn = false;
+                }
+            }
+
+            public void onFinish(){
+                if(bgIsBlinking == true){
+                    start();
+                }
+            }
+        }.start();
+    }
+
+    public void StopBackgroundBlinking(){
+        bgIsBlinking = false;
     }
 
     public void P2BtnStopBlinking(){
