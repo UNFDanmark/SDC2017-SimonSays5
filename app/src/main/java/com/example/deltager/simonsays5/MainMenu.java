@@ -17,11 +17,12 @@ public class MainMenu extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        beginGameMP = MediaPlayer.create(this, R.raw.begin_game);
+        //beginGameMP = MediaPlayer.create(this, R.raw.begin_game);
     }
-    MediaPlayer beginGameMP;
+
+    //MediaPlayer beginGameMP;
     public void player2b (View view) {
-        beginGameMP.start();
+        //beginGameMP.start();
         Intent intent = new Intent(this, TwoPlayerActivity.class);
         startActivity(intent);
     }

@@ -9,7 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:id="@+id/relativeLayout">
 
         <TextView
             android:id="@+id/MiddelText2"
@@ -80,6 +81,7 @@
             android:background="#fbbc05"
             android:onClick="P2TrykkedePåGul"
             android:text="" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -128,6 +130,15 @@
             android:text="" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/restartGameBtn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_below="@+id/linearLayout"
+        android:layout_weight="1"
+        android:onClick="GameRestart" />
 
 
 </RelativeLayout>

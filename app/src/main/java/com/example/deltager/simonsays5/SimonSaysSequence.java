@@ -26,4 +26,8 @@ public class SimonSaysSequence {
     public int getAmount() {
         return seq.length();
     }
+
+    public void clear(){
+        seq = "";
+    }
 }

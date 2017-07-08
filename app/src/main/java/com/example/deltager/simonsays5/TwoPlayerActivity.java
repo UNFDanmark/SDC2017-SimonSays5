@@ -1,9 +1,12 @@
 package com.example.deltager.simonsays5;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
@@ -35,6 +38,7 @@ public class TwoPlayerActivity extends Activity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player2);
+        findViewById(R.id.restartGameBtn).setBackgroundColor(Color.TRANSPARENT);
 
         gameController = new GameController(this);
         player1 = new Player(1, gameController);
@@ -119,16 +123,16 @@ public class TwoPlayerActivity extends Activity{
         bgIsBlinking = true;
         final View v = getWindow().getDecorView();
 
+        findViewById(R.id.restartGameBtn).setBackgroundColor(0x8F7590C2);
+
         new CountDownTimer(bgBlinkTime, bgBlinkTime){
             public void onTick(long millisUntilFinished){
                 if(bgIsColorOn == false){
-                    //findViewById(R.id.relativeLayoutBase).getRootView().setBackgroundColor(0xFFC3FFF7);
-                    //v.setBackgroundColor(0xFFC3FFF7);
+                    findViewById(R.id.restartGameBtn).setBackgroundColor(0x8F7590C2);
                     bgIsColorOn = true;
                 }
                 else if(bgIsColorOn == true){
-                    //findViewById(R.id.relativeLayoutBase).getRootView().setBackgroundColor(bgStartFarve);
-                    //v.setBackgroundColor(bgStartFarve);
+                    findViewById(R.id.restartGameBtn).setBackgroundColor(Color.TRANSPARENT);
                     bgIsColorOn = false;
                 }
             }
@@ -202,5 +206,11 @@ public class TwoPlayerActivity extends Activity{
     public void setMiddleText(String nyText){
         ((TextView)findViewById(R.id.MiddelText1)).setText(nyText);
         ((TextView)findViewById(R.id.MiddelText2)).setText(nyText);
+    }
+
+    public void GameRestart(View view){
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 }

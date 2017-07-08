@@ -16,28 +16,31 @@ public class GameController {
     private int activePlayer = 1;
     private boolean addColor = true;
 
+    private boolean isGameOver;
+
     public GameController (TwoPlayerActivity twoPlayerActivity){
         sequence = new SimonSaysSequence();
         this.twoPlayerActivity = twoPlayerActivity;
     }
 
-    public void spillerValgteFarve (int playerID, char farve){
-        lightButton(playerID, farve);
-        if(activePlayer == playerID){
-            if(addColor){
-                addColorToSequence(farve);
-                ChangePlayer();
-                twoPlayerActivity.setMiddleText("player " + activePlayer + " START!");
-            }
-            else{
-                if(CheckCorrectSequenceColor(farve)){
-                    IncrementColorIndex();
-                    if(HasFinishedSequence()){
-                        twoPlayerActivity.setMiddleText("player " + activePlayer + " choose color!");
-                        playerSuccede();
-                    }
+    public void spillerValgteFarve (int playerID, char farve) {
+        if(isGameOver == false) {
+            lightButton(playerID, farve);
+            if (activePlayer == playerID) {
+                if (addColor) {
+                    addColorToSequence(farve);
+                    ChangePlayer();
+                    twoPlayerActivity.setMiddleText("player " + activePlayer + " START!");
                 } else {
-                    PlayerLost();
+                    if (CheckCorrectSequenceColor(farve)) {
+                        IncrementColorIndex();
+                        if (HasFinishedSequence()) {
+                            twoPlayerActivity.setMiddleText("player " + activePlayer + " choose color!");
+                            playerSuccede();
+                        }
+                    } else {
+                        PlayerLost();
+                    }
                 }
             }
         }
@@ -105,6 +108,8 @@ public class GameController {
         //Test
         Log.i("Player", "Player " + activePlayer + " LOST!!");
         twoPlayerActivity.playerLost(activePlayer);
+
+        isGameOver = true;
     }
 
     /*
@@ -150,6 +155,12 @@ public class GameController {
         } else if (activePlayer == 2) {
             twoPlayerActivity.P2BtnStopBlinking();
         }
+    }
+
+    public void restartGame(){
+        sequence.clear();
+        isGameOver = false;
+        currentColorIndex = 0;
     }
 }
 
