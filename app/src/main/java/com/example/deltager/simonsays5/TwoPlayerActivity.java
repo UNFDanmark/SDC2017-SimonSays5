@@ -29,9 +29,9 @@ public class TwoPlayerActivity extends Activity{
     private boolean P1BtnIsBlinking, P1BtnIsOn;
     private boolean P2BtnIsBlinking, P2BtnIsOn;
 
-    private int blinkingInterval = 300;
+    private int blinkingInterval = 200;
 
-    private int bgBlinkTime = 500, bgStartFarve;
+    private int bgBlinkTime = 350, bgStartFarve;
     private boolean bgIsBlinking, bgIsColorOn;
 
     @Override
@@ -86,6 +86,11 @@ public class TwoPlayerActivity extends Activity{
     }
 
     public void P1BtnStopBlinking(){
+        p1RødKnap.changeToOff();
+        p1BlåKnap.changeToOff();
+        p1GrønKnap.changeToOff();
+        p1GulKnap.changeToOff();
+
         P1BtnIsBlinking = false;
     }
 
@@ -176,9 +181,10 @@ public class TwoPlayerActivity extends Activity{
 
     public void StartBackgroundBlinking(){
         bgIsBlinking = true;
-        final View v = getWindow().getDecorView();
 
+        //Sæt kanppen til at være en valgt farve
         findViewById(R.id.restartGameBtn).setBackgroundColor(0x8F7590C2);
+        bgIsColorOn = true; //Så colorOn så den bliver skiftet til transparent så den ikke har dobbelt tid
 
         new CountDownTimer(bgBlinkTime, bgBlinkTime){
             public void onTick(long millisUntilFinished){
@@ -205,6 +211,11 @@ public class TwoPlayerActivity extends Activity{
     }
 
     public void P2BtnStopBlinking(){
+        p2RødKnap.changeToOff();
+        p2BlåKnap.changeToOff();
+        p2GrønKnap.changeToOff();
+        p2GulKnap.changeToOff();
+
         P2BtnIsBlinking = false;
 
     }
@@ -254,8 +265,7 @@ public class TwoPlayerActivity extends Activity{
     }
 
     public void setMiddleText(String nyText){
-        //((TextView)findViewById(R.id.MiddelText1)).setText(nyText);
-        //((TextView)findViewById(R.id.MiddelText2)).setText(nyText);
+        ((TextView)findViewById(R.id.middelText)).setText(nyText);
     }
 
     public void GameRestart(View view){

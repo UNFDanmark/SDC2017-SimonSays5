@@ -27,6 +27,7 @@ public class GameController {
 
     private void startGame(){
         twoPlayerActivity.startAllBntBlink();
+        twoPlayerActivity.setMiddleText("Press a color to start!!");
     }
 
     public void spillerValgteFarve (int playerID, char farve) {
@@ -43,12 +44,12 @@ public class GameController {
                 if (addColor) {
                     addColorToSequence(farve);
                     ChangePlayer();
-                    twoPlayerActivity.setMiddleText("player " + activePlayer + " START!");
+                    //twoPlayerActivity.setMiddleText("player " + activePlayer + " START!");
                 } else {
                     if (CheckCorrectSequenceColor(farve)) {
                         IncrementColorIndex();
                         if (HasFinishedSequence()) {
-                            twoPlayerActivity.setMiddleText("player " + activePlayer + " choose color!");
+                            //twoPlayerActivity.setMiddleText("player " + activePlayer + " choose color!");
                             playerSuccede();
                         }
                     } else {
@@ -116,10 +117,12 @@ public class GameController {
     The active player has lost
      */
     private void PlayerLost(){
-        twoPlayerActivity.setMiddleText("player " + activePlayer + " lost");
+        //twoPlayerActivity.setMiddleText("player " + activePlayer + " lost");
         //Test
         Log.i("Player", "Player " + activePlayer + " LOST!!");
         twoPlayerActivity.playerLost(activePlayer);
+        twoPlayerActivity.setMiddleText("Press to restart");
+        twoPlayerActivity.stopAllBntBlink(); //For en sikkerheds skyld stop alle knapper der blinker hvis nogle gør
 
         isGameOver = true;
     }
@@ -129,6 +132,7 @@ public class GameController {
      */
     private void playerSuccede(){
         addColor = true;
+        twoPlayerActivity.setMiddleText("Add color to sequence");
         BtnStartBlinkActivePlayer();
         //Test
         Log.i("Player", "Player " + activePlayer + " SUCCEDE!!");
@@ -140,8 +144,10 @@ public class GameController {
     private void ChangePlayer(){
         currentColorIndex = 0;
         //getWindow().getDecorView().setBackgroundColor(0xFFC3FFF7);
-        twoPlayerActivity.setMiddleText("Changed player to " + GetNextPlayerID());
+        //twoPlayerActivity.setMiddleText("Changed player to " + GetNextPlayerID());
         activePlayer = GetNextPlayerID();
+
+        twoPlayerActivity.setMiddleText("Next player\nRemember sequence");
     }
 
     private int GetNextPlayerID(){
