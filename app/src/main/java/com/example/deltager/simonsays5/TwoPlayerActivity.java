@@ -119,6 +119,61 @@ public class TwoPlayerActivity extends Activity{
 
     }
 
+    public void startAllBntBlink(){
+        //Vi kan ikke gøre dette fordi den venter på hinanden:
+        //P1BtnStartBlinking();
+        //P2BtnStartBlinking();
+
+        P1BtnIsBlinking = true;
+        P2BtnIsBlinking = true;
+
+        new CountDownTimer(blinkingInterval, blinkingInterval){
+            public void onTick (long millisUntilFinished){
+                if(P2BtnIsOn == true && P1BtnIsOn == true){
+                    p1RødKnap.changeToOff();
+                    p1BlåKnap.changeToOff();
+                    p1GrønKnap.changeToOff();
+                    p1GulKnap.changeToOff();
+                    p2RødKnap.changeToOff();
+                    p2BlåKnap.changeToOff();
+                    p2GrønKnap.changeToOff();
+                    p2GulKnap.changeToOff();
+
+                    P1BtnIsOn = false;
+                    P2BtnIsOn = false;
+                }
+                else if(P2BtnIsOn == false && P1BtnIsOn == false){
+                    p1RødKnap.changeToOn();
+                    p1BlåKnap.changeToOn();
+                    p1GrønKnap.changeToOn();
+                    p1GulKnap.changeToOn();
+                    p2RødKnap.changeToOn();
+                    p2BlåKnap.changeToOn();
+                    p2GrønKnap.changeToOn();
+                    p2GulKnap.changeToOn();
+
+                    P1BtnIsOn = true;
+                    P2BtnIsOn = true;
+                }
+
+            }
+            public void onFinish(){
+                if(P1BtnIsBlinking == true && P2BtnIsBlinking ==true){
+                    start();
+                }
+            }
+        }.start();
+    }
+
+    public void stopAllBntBlink(){
+        //Vi kan ikke gøre dette fordi den venter på hinanden:
+        //P1BtnStopBlinking();
+        //P2BtnStopBlinking();
+
+        P1BtnIsBlinking = false;
+        P2BtnIsBlinking = false;
+    }
+
     public void StartBackgroundBlinking(){
         bgIsBlinking = true;
         final View v = getWindow().getDecorView();
@@ -155,12 +210,7 @@ public class TwoPlayerActivity extends Activity{
     }
 
     public void playerLost (int activePlayer){
-         if (activePlayer == 1) {
-
-         }
-         else if (activePlayer == 0) {
-
-         }
+        StartBackgroundBlinking();
     }
 
     private void P2TrykkedePåenFarve(char farve){
@@ -204,13 +254,15 @@ public class TwoPlayerActivity extends Activity{
     }
 
     public void setMiddleText(String nyText){
-        ((TextView)findViewById(R.id.MiddelText1)).setText(nyText);
-        ((TextView)findViewById(R.id.MiddelText2)).setText(nyText);
+        //((TextView)findViewById(R.id.MiddelText1)).setText(nyText);
+        //((TextView)findViewById(R.id.MiddelText2)).setText(nyText);
     }
 
     public void GameRestart(View view){
-        Intent intent = getIntent();
-        finish();
-        startActivity(intent);
+        if(gameController.getIsGameOver()){
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }
     }
 }

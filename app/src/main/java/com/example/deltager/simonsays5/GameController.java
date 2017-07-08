@@ -21,9 +21,22 @@ public class GameController {
     public GameController (TwoPlayerActivity twoPlayerActivity){
         sequence = new SimonSaysSequence();
         this.twoPlayerActivity = twoPlayerActivity;
+
+        startGame();
+    }
+
+    private void startGame(){
+        twoPlayerActivity.startAllBntBlink();
     }
 
     public void spillerValgteFarve (int playerID, char farve) {
+        //Hvis spillet lige er startet skal vi stoppe alle de blinkende knapper
+        if(sequence.getAmount() == 0){
+            activePlayer = playerID;
+            twoPlayerActivity.stopAllBntBlink();
+        }
+
+        //Logik for hvis spillet er i gang
         if(isGameOver == false) {
             lightButton(playerID, farve);
             if (activePlayer == playerID) {
@@ -104,7 +117,6 @@ public class GameController {
      */
     private void PlayerLost(){
         twoPlayerActivity.setMiddleText("player " + activePlayer + " lost");
-        twoPlayerActivity.StartBackgroundBlinking();
         //Test
         Log.i("Player", "Player " + activePlayer + " LOST!!");
         twoPlayerActivity.playerLost(activePlayer);
@@ -161,6 +173,10 @@ public class GameController {
         sequence.clear();
         isGameOver = false;
         currentColorIndex = 0;
+    }
+
+    public boolean getIsGameOver() {
+        return isGameOver;
     }
 }
 
