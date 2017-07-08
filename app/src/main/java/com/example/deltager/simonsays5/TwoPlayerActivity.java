@@ -2,6 +2,7 @@ package com.example.deltager.simonsays5;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
@@ -21,6 +22,10 @@ public class TwoPlayerActivity extends Activity{
     //player 2; knapper
     public simonSaysButton p2RødKnap, p2BlåKnap, p2GrønKnap, p2GulKnap;
 
+    private boolean P1BtnIsBlinking, P1BtnIsOn;
+    private boolean P2BtnIsBlinking, P2BtnIsOn;
+
+    private int blinkingInterval = 300;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +45,73 @@ public class TwoPlayerActivity extends Activity{
         p2BlåKnap = new simonSaysButton(0xFF6694FF, 0xFF4285F4, findViewById(R.id.blueP2Btn));
         p2GrønKnap = new simonSaysButton(0xFF47E571, 0xFF34A853, findViewById(R.id.greenP2Btn));
         p2GulKnap = new simonSaysButton(0xFFFFCE4F, 0xFFFBBC05, findViewById(R.id.yellowP2Btn));
+
+    }
+
+    public void P1BtnStartBlinking(){
+        P1BtnIsBlinking = true;
+
+        new CountDownTimer(blinkingInterval, blinkingInterval){
+            public void onTick (long millisUntilFinished){
+                if(P1BtnIsOn == true){
+                    p1RødKnap.changeToOff();
+                    p1BlåKnap.changeToOff();
+                    p1GrønKnap.changeToOff();
+                    p1GulKnap.changeToOff();
+                    P1BtnIsOn = false;
+                }
+                else if(P1BtnIsOn == false){
+                    p1RødKnap.changeToOn();
+                    p1BlåKnap.changeToOn();
+                    p1GrønKnap.changeToOn();
+                    p1GulKnap.changeToOn();
+                    P1BtnIsOn = true;
+                }
+            }
+            public void onFinish(){
+                if(P1BtnIsBlinking ==true){
+                    start();
+                }
+            }
+        }.start();
+    }
+
+    public void P1BtnStopBlinking(){
+        P1BtnIsBlinking = false;
+    }
+
+    public void P2BtnStartBlinking(){
+        P2BtnIsBlinking = true;
+
+        new CountDownTimer(blinkingInterval, blinkingInterval){
+            public void onTick (long millisUntilFinished){
+                if(P2BtnIsOn == true){
+                    p2RødKnap.changeToOff();
+                    p2BlåKnap.changeToOff();
+                    p2GrønKnap.changeToOff();
+                    p2GulKnap.changeToOff();
+                    P2BtnIsOn = false;
+                }
+                else if(P2BtnIsOn == false){
+                    p2RødKnap.changeToOn();
+                    p2BlåKnap.changeToOn();
+                    p2GrønKnap.changeToOn();
+                    p2GulKnap.changeToOn();
+                    P2BtnIsOn = true;
+                }
+
+            }
+            public void onFinish(){
+                if(P2BtnIsBlinking ==true){
+                    start();
+                }
+            }
+        }.start();
+
+    }
+
+    public void P2BtnStopBlinking(){
+        P2BtnIsBlinking = false;
 
     }
 

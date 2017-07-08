@@ -12,6 +12,7 @@ public class simonSaysButton {
     private int offColor;
     private View btn;
     private int onColorTime = 500;
+    private boolean doIBlink;
 
     public simonSaysButton (int onColor, int offColor, View btn){
         this.onColor = onColor;
@@ -21,15 +22,49 @@ public class simonSaysButton {
 
     public void btnBlink() {
         final int startColor = offColor;
-        btn.setBackgroundColor(onColor);
+        changeToOn();
 
         new CountDownTimer(onColorTime, onColorTime) {
             public void onTick(long millisUntilFinished){
             }
 
             public void onFinish() {
-                btn.setBackgroundColor(startColor);
+                changeToOff();
             }
         }.start();
+    }
+
+    public boolean getDoIBlink(){
+        return doIBlink;
+    }
+
+    public void startBlinking(){
+        doIBlink = true;
+        new CountDownTimer(onColorTime, onColorTime){
+            public void onTick (long millisUntilFinished){
+                btnBlink();
+            }
+            public void onFinish(){
+                if(doIBlink ==true){
+                    start();
+                }
+            }
+        }.start();
+    }
+
+    public void changeToOn(){
+        btn.setBackgroundColor(onColor);
+    }
+
+    public void changeToOff(){
+        btn.setBackgroundColor(offColor);
+    }
+
+    public void stopBlinking(){
+        doIBlink = false;
+    }
+
+    public int getOnColorTime(){
+        return onColorTime;
     }
 }

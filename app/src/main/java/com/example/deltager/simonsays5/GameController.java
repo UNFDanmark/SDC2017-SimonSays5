@@ -46,6 +46,7 @@ public class GameController {
     private void addColorToSequence(char color){
         sequence.addChar(color);
         addColor = false;
+        BtnStopBlinkActivePlayer();
         lightButton(GetNextPlayerID(), color);
     }
 
@@ -110,7 +111,7 @@ public class GameController {
      */
     private void playerSuccede(){
         addColor = true;
-
+        BtnStartBlinkActivePlayer();
         //Test
         Log.i("Player", "Player " + activePlayer + " SUCCEDE!!");
     }
@@ -132,4 +133,21 @@ public class GameController {
         }
         return -1;
     }
+
+    private void BtnStartBlinkActivePlayer(){
+        if(activePlayer == 1){
+            twoPlayerActivity.P1BtnStartBlinking();
+        } else if (activePlayer == 2){
+            twoPlayerActivity.P2BtnStartBlinking();
+        }
+    }
+
+    private void BtnStopBlinkActivePlayer() {
+        if (activePlayer == 1) {
+            twoPlayerActivity.P1BtnStopBlinking();
+        } else if (activePlayer == 2) {
+            twoPlayerActivity.P2BtnStopBlinking();
+        }
+    }
 }
+
