@@ -26,7 +26,6 @@
 
             <Button
                 android:id="@+id/button11"
-                style="@android:style/Widget.Material.Button.Small"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -42,12 +41,13 @@
                 android:id="@+id/button14"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/button11"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="49dp"
                 android:layout_weight="2"
                 android:onClick="player2b"
-                android:text="2 Player">
+                android:text="2 Player"
+                android:layout_below="@+id/button11"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
                 android:layout_alignParentStart="true"></Button>
 
             <Button
@@ -59,8 +59,8 @@
                 android:layout_below="@+id/button14"
                 android:layout_marginTop="40dp"
                 android:layout_weight="2"
-                android:text="Button3">
-            </Button>
+                android:onClick="player2bTimer"
+                android:text="2 PLAYER - SPEED MODE"></Button>
             <!-- 70% Width End-->
 
         </RelativeLayout>

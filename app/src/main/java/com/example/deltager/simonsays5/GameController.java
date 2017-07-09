@@ -1,5 +1,6 @@
 package com.example.deltager.simonsays5;
 
+import android.os.CountDownTimer;
 import android.util.Log;
 
 /**
@@ -9,19 +10,50 @@ import android.util.Log;
 public class GameController {
 
     private TwoPlayerActivity twoPlayerActivity;
+    private Player player1;
+    private Player player2;
 
     private SimonSaysSequence sequence;
     private int currentColorIndex;
 
     private int activePlayer = 1;
     private boolean addColor = true;
-
     private boolean isGameOver;
 
-    public GameController (TwoPlayerActivity twoPlayerActivity){
+    public GameController (final TwoPlayerActivity twoPlayerActivity){
+        Log.i("GC Constructor", "Step 1");
         sequence = new SimonSaysSequence();
         this.twoPlayerActivity = twoPlayerActivity;
+        // Dette var den gamle måde
+//        player1 = new Player(1, this);
+//        player2 = new Player(2, this);
 
+
+        player1 = new Player(1);
+        player2 = new Player(2);
+
+        Log.i("GC Constructor", "Step 2");
+        Log.i("GC Constructor", "Player 1: " + player1.playerTimer);
+
+        CountDownTimer timer = new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long l) {
+                if (activePlayer == 1) {
+                    player1.playerTimer--;
+                    twoPlayerActivity.setTimerText(player1.playerTimer + "", 1);
+                }
+                if (activePlayer == 2) {
+                    player2.playerTimer--;
+                    twoPlayerActivity.setTimerText(player2.playerTimer + "", 2);
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                start();
+            }
+        };
+        timer.start();
         startGame();
     }
 
@@ -29,8 +61,8 @@ public class GameController {
         twoPlayerActivity.startAllBntBlink();
         twoPlayerActivity.setMiddleText("Press a color to start!!");
     }
-
     public void spillerValgteFarve (int playerID, char farve) {
+        Log.i("TESTEST", "TESTEST");
         //Hvis spillet lige er startet skal vi stoppe alle de blinkende knapper
         if(sequence.getAmount() == 0){
             activePlayer = playerID;

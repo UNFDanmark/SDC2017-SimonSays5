@@ -15,7 +15,7 @@ import android.widget.TextView;
  * Created by deltager on 06-07-17.
  */
 
-public class TwoPlayerActivity extends Activity{
+public class TwoPlayerActivity extends Activity {
 
     private GameController gameController;
     private Player player1, player2;
@@ -40,13 +40,17 @@ public class TwoPlayerActivity extends Activity{
         setContentView(R.layout.player2);
         findViewById(R.id.restartGameBtn).setBackgroundColor(Color.TRANSPARENT);
 
-        gameController = new GameController(this);
-        player1 = new Player(1, gameController);
-        player2 = new Player(2, gameController);
+        // FIXME: Understående 3 objekter kræver hinanden i deres constructor. Dette er ikke godt. Refactor.
+//
+//        player1 = new Player(1, gameController);
+//        player2 = new Player(2, gameController);
+//        gameController = new GameController(this);
 
-        p1RødKnap = new simonSaysButton(0xFFFF5F51, 0xFFEA4335, findViewById(R.id.RedP1Btn));
-        p1BlåKnap = new simonSaysButton(0xFF42A3F4, 0xFF4285F4, findViewById(R.id.BlueP1Bnt));
-        p1GrønKnap = new simonSaysButton(0xFF17BB4A, 0xFF34A853, findViewById(R.id.GreenP1Bnt));
+        gameController = new GameController(this);
+
+        p1RødKnap = new simonSaysButton(0xFFFF5F51, 0xFFEA4335, findViewById(R.id.redP1Btn));
+        p1BlåKnap = new simonSaysButton(0xFF42A3F4, 0xFF4285F4, findViewById(R.id.blueP1Bnt));
+        p1GrønKnap = new simonSaysButton(0xFF17BB4A, 0xFF34A853, findViewById(R.id.greenP1Bnt));
         p1GulKnap = new simonSaysButton(0xFFFFD430, 0xFFFBBC05, findViewById(R.id.yellowP1Btn));
 
         p2RødKnap = new simonSaysButton(0xFFFF5F51, 0xFFEA4335, findViewById(R.id.redP2Btn));
@@ -55,21 +59,21 @@ public class TwoPlayerActivity extends Activity{
         p2GulKnap = new simonSaysButton(0xFFFFD430, 0xFFFBBC05, findViewById(R.id.yellowP2Btn));
 
         bgStartFarve = getWindow().getDecorView().getSolidColor();
+        Log.i("onCreate", "onCreate finished");
     }
 
-    public void P1BtnStartBlinking(){
+    public void P1BtnStartBlinking() {
         P1BtnIsBlinking = true;
 
-        new CountDownTimer(blinkingInterval, blinkingInterval){
-            public void onTick (long millisUntilFinished){
-                if(P1BtnIsOn == true){
+        new CountDownTimer(blinkingInterval, blinkingInterval) {
+            public void onTick(long millisUntilFinished) {
+                if (P1BtnIsOn == true) {
                     p1RødKnap.changeToOff();
                     p1BlåKnap.changeToOff();
                     p1GrønKnap.changeToOff();
                     p1GulKnap.changeToOff();
                     P1BtnIsOn = false;
-                }
-                else if(P1BtnIsOn == false){
+                } else if (P1BtnIsOn == false) {
                     p1RødKnap.changeToOn();
                     p1BlåKnap.changeToOn();
                     p1GrønKnap.changeToOn();
@@ -77,6 +81,7 @@ public class TwoPlayerActivity extends Activity{
                     P1BtnIsOn = true;
                 }
             }
+
             public void onFinish(){
                 if(P1BtnIsBlinking ==true){
                     start();
@@ -85,7 +90,7 @@ public class TwoPlayerActivity extends Activity{
         }.start();
     }
 
-    public void P1BtnStopBlinking(){
+    public void P1BtnStopBlinking() {
         p1RødKnap.changeToOff();
         p1BlåKnap.changeToOff();
         p1GrønKnap.changeToOff();
@@ -94,19 +99,18 @@ public class TwoPlayerActivity extends Activity{
         P1BtnIsBlinking = false;
     }
 
-    public void P2BtnStartBlinking(){
+    public void P2BtnStartBlinking() {
         P2BtnIsBlinking = true;
 
-        new CountDownTimer(blinkingInterval, blinkingInterval){
-            public void onTick (long millisUntilFinished){
-                if(P2BtnIsOn == true){
+        new CountDownTimer(blinkingInterval, blinkingInterval) {
+            public void onTick(long millisUntilFinished) {
+                if (P2BtnIsOn == true) {
                     p2RødKnap.changeToOff();
                     p2BlåKnap.changeToOff();
                     p2GrønKnap.changeToOff();
                     p2GulKnap.changeToOff();
                     P2BtnIsOn = false;
-                }
-                else if(P2BtnIsOn == false){
+                } else if (P2BtnIsOn == false) {
                     p2RødKnap.changeToOn();
                     p2BlåKnap.changeToOn();
                     p2GrønKnap.changeToOn();
@@ -115,8 +119,9 @@ public class TwoPlayerActivity extends Activity{
                 }
 
             }
-            public void onFinish(){
-                if(P2BtnIsBlinking ==true){
+
+            public void onFinish() {
+                if (P2BtnIsBlinking == true) {
                     start();
                 }
             }
@@ -191,76 +196,77 @@ public class TwoPlayerActivity extends Activity{
                 if(bgIsColorOn == false){
                     findViewById(R.id.restartGameBtn).setBackgroundColor(0x8F7590C2);
                     bgIsColorOn = true;
-                }
-                else if(bgIsColorOn == true){
+                } else if(bgIsColorOn == true){
                     findViewById(R.id.restartGameBtn).setBackgroundColor(Color.TRANSPARENT);
                     bgIsColorOn = false;
                 }
             }
 
-            public void onFinish(){
-                if(bgIsBlinking == true){
+            public void onFinish() {
+                if (bgIsBlinking == true) {
                     start();
                 }
             }
         }.start();
     }
 
-    public void StopBackgroundBlinking(){
+    public void StopBackgroundBlinking() {
         bgIsBlinking = false;
     }
 
-    public void P2BtnStopBlinking(){
+    public void P2BtnStopBlinking() {
         p2RødKnap.changeToOff();
         p2BlåKnap.changeToOff();
         p2GrønKnap.changeToOff();
         p2GulKnap.changeToOff();
 
         P2BtnIsBlinking = false;
-
     }
 
     public void playerLost (int activePlayer){
         StartBackgroundBlinking();
     }
 
-    private void P2TrykkedePåenFarve(char farve){
-        player2.TrykkedePåEnFarve(farve);
+    private void P2TrykkedePåenFarve(char farve) {
+        Log.i("P2Trykkede", "Farve: " + farve);
+        gameController.spillerValgteFarve(2, farve);
     }
 
-    public void P2TrykkedePåRød(View view){
+    public void P2TrykkedePåRød(View view) {
         P2TrykkedePåenFarve('R');
     }
 
-    public void P2TrykkedePåGrøn(View view){
+    public void P2TrykkedePåGrøn(View view) {
         P2TrykkedePåenFarve('G');
     }
 
-    public void P2TrykkedePåBlå(View view){
+    public void P2TrykkedePåBlå(View view) {
         P2TrykkedePåenFarve('B');
     }
 
-    public void P2TrykkedePåGul(View view){
+    public void P2TrykkedePåGul(View view) {
         P2TrykkedePåenFarve('Y');
     }
 
-    private void P1TrykkedePåenFarve(char farve){
-        player1.TrykkedePåEnFarve(farve);
+    private void P1TrykkedePåenFarve(char farve) {
+        Log.i("P1Trykkede", "Farve: " + farve);
+        gameController.spillerValgteFarve(1, farve);
     }
 
-    public void P1TrykkedePåRød(View view){
+    public void P1TrykkedePåRød(View view) {
         P1TrykkedePåenFarve('R');
     }
 
-    public void P1TrykkedePåGrøn(View view){
+    public void P1TrykkedePåGrøn(View view) {
         P1TrykkedePåenFarve('G');
     }
 
-    public void P1TrykkedePåBlå(View view){
+    public void P1TrykkedePåBlå(View view) {
         P1TrykkedePåenFarve('B');
     }
 
-    public void P1TrykkedePåGul(View view){
+    public void P1TrykkedePåGul(View view) {
+        Log.i("p1", "gul");
         P1TrykkedePåenFarve('Y');
     }
 
@@ -273,6 +279,14 @@ public class TwoPlayerActivity extends Activity{
             Intent intent = getIntent();
             finish();
             startActivity(intent);
+        }
+    }
+
+    public void setTimerText(String timerText, int player) {
+        if (player == 1) {
+            ((TextView) findViewById(R.id.player1Timer)).setText(timerText);
+        } else {
+            ((TextView) findViewById(R.id.player2Timer)).setText(timerText);
         }
     }
 }

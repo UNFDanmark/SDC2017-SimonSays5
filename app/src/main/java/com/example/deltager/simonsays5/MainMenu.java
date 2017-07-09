@@ -26,4 +26,7 @@ public class MainMenu extends Activity {
         Intent intent = new Intent(this, TwoPlayerActivity.class);
         startActivity(intent);
     }
+    public void player2bTimer (View view) {
+
+    }
 }
