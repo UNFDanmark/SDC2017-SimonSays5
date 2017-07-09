@@ -26,16 +26,15 @@ public class MainMenu extends Activity {
     //MediaPlayer beginGameMP;
     public void player2b (View view) {
         //beginGameMP.start();
-        starttwoPlayer(false, 0, 0);
+        startTwoPlayer(0, 0);
     }
 
     public void player2bTimer (View view) {
-        starttwoPlayer(true, 100, 5);
+        startTwoPlayer(100, 5);
     }
 
-    private void starttwoPlayer(boolean useTimer, int player1Timer, int player2Timer){
+    private void startTwoPlayer(int player1Timer, int player2Timer){
         Intent intent = new Intent(this, TwoPlayerActivity.class);
-        intent.putExtra("useTimer", useTimer);
         intent.putExtra("player1Timer", player1Timer);
         intent.putExtra("player2Timer", player2Timer);
         startActivity(intent);

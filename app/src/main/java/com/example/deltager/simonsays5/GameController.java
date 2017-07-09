@@ -27,11 +27,12 @@ public class GameController {
 
     private boolean useTimer;
 
-    public GameController (final TwoPlayerActivity twoPlayerActivity, boolean useTimer, Player player1, Player player2){
+    public GameController (final TwoPlayerActivity twoPlayerActivity, Player player1, Player player2){
         this.twoPlayerActivity = twoPlayerActivity;
-        this.useTimer = useTimer;
         this.player1 = player1;
         this.player2 = player2;
+
+        useTimer = player1.playerTimer > 0 && player2.playerTimer > 0;
         activePlayer = 0;
 
         sequence = new SimonSaysSequence();
@@ -194,7 +195,7 @@ public class GameController {
         //Test
         Log.i("Player", "Player " + activePlayer + " LOST!!");
         twoPlayerActivity.playerLost(activePlayer);
-        twoPlayerActivity.setMiddleText("You remembered " + sequence.getAmount() + " colors " + "\nPress to restart");
+        twoPlayerActivity.setMiddleText("You remembered " + sequence.getAmount() + " color" + ((sequence.getAmount() > 1)?"s":"") + "\nPress to restart");
         twoPlayerActivity.stopAllBntBlink(); //For en sikkerheds skyld stop alle knapper der blinker hvis nogle gør
         twoPlayerActivity.setPlayerText(activePlayer, "YOU LOST!!");
         twoPlayerActivity.setPlayerText(GetNextPlayerID(), "YOU WON!!");

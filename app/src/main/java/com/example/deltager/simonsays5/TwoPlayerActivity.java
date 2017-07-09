@@ -3,6 +3,7 @@ package com.example.deltager.simonsays5;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
@@ -35,6 +36,8 @@ public class TwoPlayerActivity extends Activity {
     private int bgBlinkTime = 350, bgStartFarve;
     private boolean bgIsBlinking, bgIsColorOn;
 
+    private MediaPlayer buttonPlayer;
+
     private MediaPlayer sound1;
     private MediaPlayer sound2;
     private MediaPlayer sound3;
@@ -46,10 +49,12 @@ public class TwoPlayerActivity extends Activity {
         setContentView(R.layout.player2);
         findViewById(R.id.restartGameBtn).setBackgroundColor(Color.TRANSPARENT);
 
+        /*
         sound1 = MediaPlayer.create(this, R.raw.sound1);
         sound2 = MediaPlayer.create(this, R.raw.sound3);
         sound3 = MediaPlayer.create(this, R.raw.sound2);
         sound4 = MediaPlayer.create(this, R.raw.sound4);
+        */
 
         // FIXME: Understående 3 objekter kræver hinanden i deres constructor. Dette er ikke godt. Refactor.
 //
@@ -70,9 +75,13 @@ public class TwoPlayerActivity extends Activity {
         bgStartFarve = getWindow().getDecorView().getSolidColor();
 
         gameController = new GameController(this,
-                getIntent().getBooleanExtra("useTimer", false),
                 new Player(1, getIntent().getIntExtra("player1Timer", 0)),
                 new Player(2, getIntent().getIntExtra("player2Timer", 0)));
+    }
+
+    private void playSound(int sound){
+        buttonPlayer = MediaPlayer.create(this, sound);
+        buttonPlayer.start();
     }
 
     public void P1BtnStartBlinking() {
@@ -295,22 +304,22 @@ public class TwoPlayerActivity extends Activity {
 
     public void P2TrykkedePåRød(View view) {
         P2TrykkedePåenFarve('R');
-        sound1.start();
+        playSound(R.raw.sound1);
     }
 
     public void P2TrykkedePåGrøn(View view) {
         P2TrykkedePåenFarve('G');
-        sound2.start();
+        playSound(R.raw.sound2);
     }
 
     public void P2TrykkedePåBlå(View view) {
         P2TrykkedePåenFarve('B');
-        sound3.start();
+        playSound(R.raw.sound3);
     }
 
     public void P2TrykkedePåGul(View view) {
         P2TrykkedePåenFarve('Y');
-        sound4.start();
+        playSound(R.raw.sound4);
     }
 
     private void P1TrykkedePåenFarve(char farve) {
@@ -320,23 +329,23 @@ public class TwoPlayerActivity extends Activity {
 
     public void P1TrykkedePåRød(View view) {
         P1TrykkedePåenFarve('R');
-        sound1.start();
+        playSound(R.raw.sound1);
     }
 
     public void P1TrykkedePåGrøn(View view) {
         P1TrykkedePåenFarve('G');
-        sound2.start();
+        playSound(R.raw.sound2);
     }
 
     public void P1TrykkedePåBlå(View view) {
         P1TrykkedePåenFarve('B');
-        sound3.start();
+        playSound(R.raw.sound3);
     }
 
     public void P1TrykkedePåGul(View view) {
         Log.i("p1", "gul");
         P1TrykkedePåenFarve('Y');
-        sound4.start();
+        playSound(R.raw.sound4);
     }
 
     public void setMiddleText(String nyText){
