@@ -205,7 +205,7 @@ public class GameController {
         twoPlayerActivity.stopAllBntBlink(); //For en sikkerheds skyld stop alle knapper der blinker hvis nogle gør
         twoPlayerActivity.setPlayerText(activePlayer, "YOU LOST!!");
         twoPlayerActivity.setPlayerText(GetNextPlayerID(), "YOU WON!!");
-        twoPlayerActivity.checkUpdateHighscore(sequence.getAmount() - 1); //The players did not succed in getting the latest sequence so subtract one
+        twoPlayerActivity.checkUpdateHighscore(sequence.getAmount() - 1); //The players did not succeeded in getting the latest sequence so subtract one
 
         isGameOver = true;
 

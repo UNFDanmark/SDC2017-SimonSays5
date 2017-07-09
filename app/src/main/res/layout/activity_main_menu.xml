@@ -4,11 +4,24 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="fill_parent" android:layout_height="fill_parent"
         android:id="@+id/layoutContainer" android:orientation="horizontal" android:background="@drawable/main_menu_gradient">
+
         <RelativeLayout
             android:layout_width="0dip"
             android:layout_height="fill_parent"
             android:layout_weight="0.15">
 
+            <TextView
+                android:id="@+id/devbyTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_weight="1"
+                android:text="Orion5"
+                android:textAlignment="center"
+                android:textSize="17sp"
+                android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -22,15 +35,15 @@
                 android:id="@+id/imageView"
                 android:layout_width="350dp"
                 android:layout_height="350dp"
-                android:adjustViewBounds="true"
-                android:maxWidth="42dp"
-                android:maxHeight="42dp"
-                android:scaleType="fitCenter"
+                android:layout_above="@+id/linearLayout3"
+                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="3dp"
                 android:layout_marginTop="30dp"
+                android:adjustViewBounds="true"
                 android:background="@drawable/applogomedalfa"
-                android:layout_above="@+id/linearLayout3"
-                android:layout_centerHorizontal="true" />
+                android:maxHeight="42dp"
+                android:maxWidth="42dp"
+                android:scaleType="fitCenter" />
 
             <LinearLayout
                 android:id="@+id/linearLayout3"
@@ -42,43 +55,41 @@
             </LinearLayout>
 
             <!--<ImageButton-->
-                <!--android:id="@+id/button11"-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true"-->
-                <!--android:layout_below="@+id/linearLayout3"-->
-                <!--android:layout_marginTop="40dp"-->
-                <!--android:layout_weight="2"-->
-                <!--android:elevation="0dp"-->
-                <!--android:text="button1"-->
-                <!--android:background="@drawable/button"-->
-                <!--/>-->
+            <!--android:id="@+id/button11"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_below="@+id/linearLayout3"-->
+            <!--android:layout_marginTop="40dp"-->
+            <!--android:layout_weight="2"-->
+            <!--android:elevation="0dp"-->
+            <!--android:text="button1"-->
+            <!--android:background="@drawable/button"-->
+            <!--/>-->
 
 
             <ImageButton
                 android:id="@+id/twoPlayerActivityStartBtn"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:onClick="player2b"
-                android:background="@drawable/buttontest"
-                android:text="2 Player"
-                android:layout_below="@+id/linearLayout3"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="26dp">
-            </ImageButton>
+                android:layout_below="@+id/linearLayout3"
+                android:layout_marginTop="26dp"
+                android:layout_weight="2"
+                android:background="@drawable/buttontest"
+                android:onClick="player2b"
+                android:text="2 Player"></ImageButton>
 
             <ImageButton
                 android:id="@+id/twoPlayerActivityTimerStartBtn"
-                android:background="@drawable/buttontest"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:background="@drawable/buttontest"
                 android:onClick="player2bTimer"
                 android:text="2 PLAYER - SPEED MODE"
-                android:layout_marginTop="22dp"
                 android:layout_below="@+id/twoPlayerActivityStartBtn"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"></ImageButton>
@@ -87,14 +98,14 @@
                 android:id="@+id/tekstforsøg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/textView2"
+                android:layout_alignRight="@+id/textView2"
+                android:layout_alignTop="@+id/twoPlayerActivityTimerStartBtn"
+                android:layout_marginTop="30dp"
                 android:text="2 Player \n speed mode"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textSize="24sp"
-                android:layout_marginTop="30dp"
-                android:layout_alignTop="@+id/twoPlayerActivityTimerStartBtn"
-                android:layout_alignRight="@+id/textView2"
-                android:layout_alignEnd="@+id/textView2" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -114,7 +125,7 @@
                 android:layout_below="@+id/linearLayout3"
                 android:layout_centerHorizontal="true"
                 android:text="Highscore: 1"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <!-- 70% Width End-->
 
