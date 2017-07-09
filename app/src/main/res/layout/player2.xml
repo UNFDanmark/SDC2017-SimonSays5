@@ -130,7 +130,7 @@
         android:layout_marginStart="27dp"
         android:layout_marginTop="25dp"
         android:rotation="180"
-        android:text="60"
+        android:text=""
         android:textSize="24sp" />
 
     <Button
@@ -154,7 +154,7 @@
         android:layout_marginBottom="18dp"
         android:layout_marginEnd="18dp"
         android:layout_marginRight="18dp"
-        android:text="60"
+        android:text=""
         android:textSize="24sp" />
 
 
