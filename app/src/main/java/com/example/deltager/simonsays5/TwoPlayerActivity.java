@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
+import android.media.MediaPlayer;
 
 /**
  * Created by deltager on 06-07-17.
@@ -34,11 +35,21 @@ public class TwoPlayerActivity extends Activity {
     private int bgBlinkTime = 350, bgStartFarve;
     private boolean bgIsBlinking, bgIsColorOn;
 
+    private MediaPlayer sound1;
+    private MediaPlayer sound2;
+    private MediaPlayer sound3;
+    private MediaPlayer sound4;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player2);
         findViewById(R.id.restartGameBtn).setBackgroundColor(Color.TRANSPARENT);
+
+        sound1 = MediaPlayer.create(this, R.raw.sound1);
+        sound2 = MediaPlayer.create(this, R.raw.sound3);
+        sound3 = MediaPlayer.create(this, R.raw.sound2);
+        sound4 = MediaPlayer.create(this, R.raw.sound4);
 
         // FIXME: Understående 3 objekter kræver hinanden i deres constructor. Dette er ikke godt. Refactor.
 //
@@ -284,18 +295,22 @@ public class TwoPlayerActivity extends Activity {
 
     public void P2TrykkedePåRød(View view) {
         P2TrykkedePåenFarve('R');
+        sound1.start();
     }
 
     public void P2TrykkedePåGrøn(View view) {
         P2TrykkedePåenFarve('G');
+        sound2.start();
     }
 
     public void P2TrykkedePåBlå(View view) {
         P2TrykkedePåenFarve('B');
+        sound3.start();
     }
 
     public void P2TrykkedePåGul(View view) {
         P2TrykkedePåenFarve('Y');
+        sound4.start();
     }
 
     private void P1TrykkedePåenFarve(char farve) {
@@ -305,19 +320,23 @@ public class TwoPlayerActivity extends Activity {
 
     public void P1TrykkedePåRød(View view) {
         P1TrykkedePåenFarve('R');
+        sound1.start();
     }
 
     public void P1TrykkedePåGrøn(View view) {
         P1TrykkedePåenFarve('G');
+        sound2.start();
     }
 
     public void P1TrykkedePåBlå(View view) {
         P1TrykkedePåenFarve('B');
+        sound3.start();
     }
 
     public void P1TrykkedePåGul(View view) {
         Log.i("p1", "gul");
         P1TrykkedePåenFarve('Y');
+        sound4.start();
     }
 
     public void setMiddleText(String nyText){
