@@ -26,20 +26,4 @@ public class Player {
     public int getPlayerID() {
         return playerID;
     }
-
-
-    // Dette var den gamle måde
-//    public Player(int playerID, GameController gameController){
-//        this.playerID = playerID;
-//        playerTimer = 60;
-//        this.gameController = gameController;
-//    }
-//
-//
-//    public void TrykkedePåEnFarve (char farve){
-//        Log.i("Player", "Stadigvæk " + farve);
-//        gameController.spillerValgteFarve(playerID, farve);
-//    }
-
-
 }

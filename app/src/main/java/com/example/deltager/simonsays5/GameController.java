@@ -94,7 +94,7 @@ public class GameController {
         //Det kan være at spillerne får lyst til at spille musik med knapperne når spillet er færdig
         //Så bliv ved hele tid selvom spillet er færdig
         //Vi skal først spille musikken fordi active player bliver ændret til den nye så den sidste knap lyd vil ikke spille
-        if(activePlayer == playerID){
+        if(activePlayer == playerID ||isGameOver == true){
             twoPlayerActivity.playerColorButtonSound(farve);
         }
 
@@ -109,7 +109,6 @@ public class GameController {
                     if (CheckCorrectSequenceColor(farve)) {
                         IncrementColorIndex();
                         if (HasFinishedSequence()) {
-                            //twoPlayerActivity.setMiddleText("player " + activePlayer + " choose color!");
                             playerSuccede();
                         }
                     } else {
@@ -202,11 +201,11 @@ public class GameController {
         //Test
         Log.i("Player", "Player " + activePlayer + " LOST!!");
         twoPlayerActivity.playerLost(activePlayer);
-        twoPlayerActivity.setMiddleText("You remembered " + currentColorIndex + " color" + ((currentColorIndex  != 1)?"s":"") + "\nPress to restart");
+        twoPlayerActivity.setMiddleText("Sequence was " + sequence.getAmount() + " color" + ((sequence.getAmount()  != 1)?"s":"") + "\nPress to restart");
         twoPlayerActivity.stopAllBntBlink(); //For en sikkerheds skyld stop alle knapper der blinker hvis nogle gør
         twoPlayerActivity.setPlayerText(activePlayer, "YOU LOST!!");
         twoPlayerActivity.setPlayerText(GetNextPlayerID(), "YOU WON!!");
-        twoPlayerActivity.checkUpdateHighscore(currentColorIndex);
+        twoPlayerActivity.checkUpdateHighscore(sequence.getAmount() - 1); //The players did not succed in getting the latest sequence so subtract one
 
         isGameOver = true;
 

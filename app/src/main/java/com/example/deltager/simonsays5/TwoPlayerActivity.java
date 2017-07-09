@@ -96,16 +96,6 @@ public class TwoPlayerActivity extends Activity {
         }
     }
 
-    public int getHighScore(){
-        return getSharedPreferences(String.valueOf("com.example.deltager.simonsays5.prefs"), Context.MODE_PRIVATE).getInt("Highscore", 0);
-    }
-
-    private void setHighScore(int score){
-        SharedPreferences.Editor editor = getSharedPreferences(String.valueOf("com.example.deltager.simonsays5.prefs"), Context.MODE_PRIVATE).edit();
-        editor.putInt("Highscore", score);
-        editor.commit();
-    }
-
     public void P1BtnStartBlinking() {
         P1BtnIsBlinking = true;
 
