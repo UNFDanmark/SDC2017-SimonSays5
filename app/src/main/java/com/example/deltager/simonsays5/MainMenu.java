@@ -33,10 +33,6 @@ public class MainMenu extends Activity {
         ((TextView)findViewById(R.id.highscoreTxt)).setText("Highscore: " + Prefs.getHighscore(this));
     }
 
-    private void updatehighscoreText(){
-
-    }
-
     public void player2b (View view) {
         Intent intent = new Intent(this, TwoPlayerActivity.class);
         intent.putExtra("player1Timer", 0);

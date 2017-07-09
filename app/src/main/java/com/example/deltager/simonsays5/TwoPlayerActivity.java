@@ -77,9 +77,15 @@ public class TwoPlayerActivity extends Activity {
         gameController = new GameController(this,
                 new Player(1, getIntent().getIntExtra("player1Timer", 0)),
                 new Player(2, getIntent().getIntExtra("player2Timer", 0)));
+
+        findViewById(R.id.restartGameBtn).setSoundEffectsEnabled(false);
     }
 
     private void playSound(int sound){
+        if(buttonPlayer != null){
+            buttonPlayer.release();
+        }
+
         buttonPlayer = MediaPlayer.create(this, sound);
         buttonPlayer.start();
     }
@@ -314,54 +320,43 @@ public class TwoPlayerActivity extends Activity {
     }
 
     private void P2TrykkedePåenFarve(char farve) {
-        Log.i("P2Trykkede", "Farve: " + farve);
         gameController.spillerValgteFarve(2, farve);
     }
 
     public void P2TrykkedePåRød(View view) {
         P2TrykkedePåenFarve('R');
-        playSound(R.raw.sound1);
     }
 
     public void P2TrykkedePåGrøn(View view) {
         P2TrykkedePåenFarve('G');
-        playSound(R.raw.sound2);
     }
 
     public void P2TrykkedePåBlå(View view) {
         P2TrykkedePåenFarve('B');
-        playSound(R.raw.sound3);
     }
 
     public void P2TrykkedePåGul(View view) {
         P2TrykkedePåenFarve('Y');
-        playSound(R.raw.sound4);
     }
 
     private void P1TrykkedePåenFarve(char farve) {
-        Log.i("P1Trykkede", "Farve: " + farve);
         gameController.spillerValgteFarve(1, farve);
     }
 
     public void P1TrykkedePåRød(View view) {
         P1TrykkedePåenFarve('R');
-        playSound(R.raw.sound1);
     }
 
     public void P1TrykkedePåGrøn(View view) {
         P1TrykkedePåenFarve('G');
-        playSound(R.raw.sound2);
     }
 
     public void P1TrykkedePåBlå(View view) {
         P1TrykkedePåenFarve('B');
-        playSound(R.raw.sound3);
     }
 
     public void P1TrykkedePåGul(View view) {
-        Log.i("p1", "gul");
         P1TrykkedePåenFarve('Y');
-        playSound(R.raw.sound4);
     }
 
     public void setMiddleText(String nyText){
@@ -389,6 +384,23 @@ public class TwoPlayerActivity extends Activity {
             ((TextView)findViewById(R.id.p1TopText)).setText(text);
         } else if(playerID == 2) {
             ((TextView)findViewById(R.id.p2TopText)).setText(text);
+        }
+    }
+
+    public void playerColorButtonSound(char farve){
+        switch (farve) {
+            case ('R'):
+                playSound(R.raw.sound1);
+                break;
+            case ('G'):
+                playSound(R.raw.sound2);
+                break;
+            case ('B'):
+                playSound(R.raw.sound3);
+                break;
+            case ('Y'):
+                playSound(R.raw.sound4);
+                break;
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.deltager.simonsays5;
 
 import android.os.CountDownTimer;
 import android.view.View;
+import android.widget.Button;
 
 /**
  * Created by deltager on 07-07-17.
@@ -18,6 +19,8 @@ public class simonSaysButton {
         this.onColor = onColor;
         this.offColor = offColor;
         this.btn = btn;
+
+        btn.setSoundEffectsEnabled(false);
     }
 
     public void btnBlink() {

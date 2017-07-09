@@ -57,7 +57,7 @@
 
 
             <ImageButton
-                android:id="@+id/button14"
+                android:id="@+id/twoPlayerActivityStartBtn"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -71,7 +71,7 @@
             </ImageButton>
 
             <ImageButton
-                android:id="@+id/button13"
+                android:id="@+id/twoPlayerActivityTimerStartBtn"
                 android:background="@drawable/buttontest"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
                 android:onClick="player2bTimer"
                 android:text="2 PLAYER - SPEED MODE"
                 android:layout_marginTop="22dp"
-                android:layout_below="@+id/button14"
+                android:layout_below="@+id/twoPlayerActivityStartBtn"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"></ImageButton>
 
@@ -92,7 +92,7 @@
                 android:textAllCaps="false"
                 android:textSize="24sp"
                 android:layout_marginTop="30dp"
-                android:layout_alignTop="@+id/button13"
+                android:layout_alignTop="@+id/twoPlayerActivityTimerStartBtn"
                 android:layout_alignRight="@+id/textView2"
                 android:layout_alignEnd="@+id/textView2" />
 
@@ -100,7 +100,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/button14"
+                android:layout_alignTop="@+id/twoPlayerActivityStartBtn"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="33dp"
                 android:text="2 Player"

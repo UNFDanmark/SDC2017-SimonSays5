@@ -91,6 +91,13 @@ public class GameController {
             twoPlayerActivity.stopAllBntBlink();
         }
 
+        //Det kan være at spillerne får lyst til at spille musik med knapperne når spillet er færdig
+        //Så bliv ved hele tid selvom spillet er færdig
+        //Vi skal først spille musikken fordi active player bliver ændret til den nye så den sidste knap lyd vil ikke spille
+        if(activePlayer == playerID){
+            twoPlayerActivity.playerColorButtonSound(farve);
+        }
+
         //Logik for hvis spillet er i gang
         if(isGameOver == false) {
             lightButton(playerID, farve);
@@ -265,6 +272,10 @@ public class GameController {
 
     public boolean getIsGameOver() {
         return isGameOver;
+    }
+
+    public int getActivePlayer(){
+        return activePlayer;
     }
 }
 
