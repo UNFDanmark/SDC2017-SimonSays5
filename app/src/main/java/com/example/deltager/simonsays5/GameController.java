@@ -97,6 +97,10 @@ public class GameController {
         }
     }
 
+    private  void addRandomColorToSequence(){
+
+    }
+
     private void addColorToSequence(char color){
         sequence.addChar(color);
         addColor = false;
