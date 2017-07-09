@@ -8,6 +8,7 @@
             android:layout_width="0dip"
             android:layout_height="fill_parent"
             android:layout_weight="0.15">
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -16,6 +17,7 @@
             android:layout_weight="0.7">
 
             <!-- This is the part that's 70% of the total width. I'm inserting a LinearLayout and buttons.-->
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="350dp"
@@ -39,43 +41,71 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/button11"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/linearLayout3"
-                android:layout_marginTop="40dp"
-                android:layout_weight="2"
-                android:elevation="0dp"
-                android:text="button1">
-                android:text="Button1"></Button>
+            <!--<ImageButton-->
+                <!--android:id="@+id/button11"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_below="@+id/linearLayout3"-->
+                <!--android:layout_marginTop="40dp"-->
+                <!--android:layout_weight="2"-->
+                <!--android:elevation="0dp"-->
+                <!--android:text="button1"-->
+                <!--android:background="@drawable/button"-->
+                <!--/>-->
 
-            <Button
+
+            <ImageButton
                 android:id="@+id/button14"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="49dp"
                 android:layout_weight="2"
                 android:onClick="player2b"
+                android:background="@drawable/buttontest"
                 android:text="2 Player"
-                android:layout_below="@+id/button11"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
-                android:layout_alignParentStart="true"></Button>
-
-            <Button
-                android:id="@+id/button13"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearLayout3"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/button14"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="26dp">
+            </ImageButton>
+
+            <ImageButton
+                android:id="@+id/button13"
+                android:background="@drawable/buttontest"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:onClick="player2bTimer"
-                android:text="2 PLAYER - SPEED MODE"></Button>
+                android:text="2 PLAYER - SPEED MODE"
+                android:layout_marginTop="22dp"
+                android:layout_below="@+id/button14"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"></ImageButton>
+
+            <TextView
+                android:id="@+id/tekstforsøg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 Player \n speed mode"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="24sp"
+                android:layout_marginTop="30dp"
+                android:layout_alignTop="@+id/button13"
+                android:layout_alignRight="@+id/textView2"
+                android:layout_alignEnd="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/button14"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="33dp"
+                android:text="2 Player"
+                android:textAllCaps="false"
+                android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/highscoreTxt"
