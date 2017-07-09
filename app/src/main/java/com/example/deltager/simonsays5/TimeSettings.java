@@ -12,16 +12,27 @@ import android.widget.NumberPicker;
 
 public class TimeSettings extends Activity {
 
-    NumberPicker np;
+    NumberPicker np1;
+    NumberPicker np2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_settings);
 
-        np = (NumberPicker) findViewById(R.id.numberPicker1);
-        np.setMaxValue(999);
-        np.setMinValue(1);
-        np.setValue(60);
+        np1 = (NumberPicker) findViewById(R.id.numberPicker1);
+        np1.setMaxValue(999);
+        np1.setMinValue(1);
+        np1.setValue(60);
+        np1.setWrapSelectorWheel(false);
+
+        np2 = (NumberPicker) findViewById(R.id.numberPicker2);
+        np2.setMaxValue(999);
+        np2.setMinValue(1);
+        np2.setValue(60);
+        np2.setWrapSelectorWheel(false);
+
+
+
     }
 }
