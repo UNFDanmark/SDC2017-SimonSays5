@@ -23,7 +23,7 @@
                 android:layout_above="@+id/linearLayout3"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="67dp"
-                android:src="@mipmap/ic_launcher" />
+                android:background="@drawable/applogomedalfa"/>
 
             <LinearLayout
                 android:id="@+id/linearLayout3"
