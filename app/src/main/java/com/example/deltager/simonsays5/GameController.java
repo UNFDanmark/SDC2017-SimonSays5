@@ -102,6 +102,10 @@ public class GameController {
         if(isGameOver == false) {
             lightButton(playerID, farve);
             if (activePlayer == playerID) {
+                if(currentColorIndex == 0){
+                    twoPlayerActivity.setMiddleText("");
+                }
+
                 if (addColor) {
                     addColorToSequence(farve);
                     ChangePlayer();
@@ -141,6 +145,7 @@ public class GameController {
     }
 
     private void addColorToSequence(char color){
+        twoPlayerActivity.setPlayerText(activePlayer, "");
         sequence.addChar(color);
         addColor = false;
         BtnStopBlinkActivePlayer();
@@ -217,7 +222,7 @@ public class GameController {
      */
     private void playerSuccede(){
         addColor = true;
-        twoPlayerActivity.setMiddleText("Add color to sequence");
+        twoPlayerActivity.setPlayerText(activePlayer, "Add color to sequence");
         BtnStartBlinkActivePlayer();
         //Test
         Log.i("Player", "Player " + activePlayer + " SUCCEDE!!");
@@ -232,7 +237,8 @@ public class GameController {
         //twoPlayerActivity.setMiddleText("Changed player to " + GetNextPlayerID());
         activePlayer = GetNextPlayerID();
 
-        twoPlayerActivity.setMiddleText("Next player\nRemember sequence");
+        twoPlayerActivity.setPlayerText(activePlayer, "Your turn");
+        twoPlayerActivity.setMiddleText("Next player");
     }
 
     /*
