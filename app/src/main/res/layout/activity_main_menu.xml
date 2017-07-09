@@ -1,6 +1,7 @@
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="fill_parent" android:layout_height="fill_parent"
         android:id="@+id/layoutContainer" android:orientation="horizontal" android:background="#7590C2">
         <RelativeLayout
@@ -15,6 +16,15 @@
             android:layout_weight="0.7">
 
             <!-- This is the part that's 70% of the total width. I'm inserting a LinearLayout and buttons.-->
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_above="@+id/linearLayout3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="67dp"
+                android:src="@mipmap/ic_launcher" />
+
             <LinearLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="fill_parent"
@@ -61,6 +71,7 @@
                 android:layout_weight="2"
                 android:onClick="player2bTimer"
                 android:text="2 PLAYER - SPEED MODE"></Button>
+
             <!-- 70% Width End-->
 
         </RelativeLayout>
