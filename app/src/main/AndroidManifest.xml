@@ -19,7 +19,6 @@
 
         <activity android:name=".TwoPlayerActivity" android:screenOrientation="portrait" />
 
-        <activity android:name=".OnePlayerActivity" android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -15,7 +15,12 @@ public class Player {
     // Dette er den nye måde
     public Player(int playerID){
         this.playerID = playerID;
-        playerTimer = 60;
+        playerTimer = 0;
+    }
+
+    public  Player(int playerID, int playerTimer){
+        this.playerID = playerID;
+        this.playerTimer = playerTimer;
     }
 
     public int getPlayerID() {

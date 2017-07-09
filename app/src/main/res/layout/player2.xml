@@ -113,7 +113,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#ea4335"
+            android:background="#9E2C29"
             android:onClick="P1TrykkedePåRød"
             android:text="" />
 
@@ -156,6 +156,30 @@
         android:layout_marginRight="18dp"
         android:text=""
         android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/p2TopText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="35sp"
+        android:layout_alignBaseline="@+id/player2Timer"
+        android:layout_alignBottom="@+id/player2Timer"
+        android:layout_centerHorizontal="true"
+        android:rotation="180"/>
+
+    <TextView
+        android:id="@+id/p1TopText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="35sp" />
 
 
 </RelativeLayout>

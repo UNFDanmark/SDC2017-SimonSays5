@@ -23,76 +23,68 @@ public class GameController {
     private boolean isGameOver;
 
     //Gamemode where the computer chooses the color and the two players have to be to fastest
-    private boolean computerChoosesColor;
     private Random prng;
 
     private boolean useTimer;
 
-    public GameController (final TwoPlayerActivity twoPlayerActivity, boolean computerChoosesColor, boolean useTimer){
-        sequence = new SimonSaysSequence();
+    public GameController (final TwoPlayerActivity twoPlayerActivity, boolean useTimer, Player player1, Player player2){
         this.twoPlayerActivity = twoPlayerActivity;
-        this.computerChoosesColor = computerChoosesColor;
         this.useTimer = useTimer;
-
+        this.player1 = player1;
+        this.player2 = player2;
         activePlayer = 0;
 
-
+        sequence = new SimonSaysSequence();
         prng = new Random(100);
 
-        player1 = new Player(1);
-        player2 = new Player(2);
-
-        Log.i("GC Constructor", "Step 2");
-        Log.i("GC Constructor", "Player 1: " + player1.playerTimer);
-
         if(this.useTimer) {
-            CountDownTimer timer = new CountDownTimer(1000, 1000) {
-                @Override
-                public void onTick(long l) {
-                    if (activePlayer == 1) {
-                        player1.playerTimer--;
-                        twoPlayerActivity.setTimerText(player1.playerTimer + "", 1);
-                        if (player1.playerTimer == 0) {
-//                        Log.i("player 1 lost", "LOST THE GAME!");
-                            PlayerLost();
-                        }
-                    }
-                    if (activePlayer == 2) {
-                        player2.playerTimer--;
-                        twoPlayerActivity.setTimerText(player2.playerTimer + "", 2);
-                        if (player2.playerTimer == 0) {
-//                        Log.i("player 2 lost", "LOST THE GAME!");
-                            PlayerLost();
-                        }
-                    }
-                }
-
-
-                @Override
-                public void onFinish() {
-                    start();
-                }
-            };
-            timer.start();
+            twoPlayerActivity.setTimerText(player1.playerTimer + "", 1);
+            twoPlayerActivity.setTimerText(player2.playerTimer + "", 2);
+            gameTimer();
         }
 
         startGame();
     }
 
+    private void gameTimer(){
+        CountDownTimer timer = new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long l) {
+                if (activePlayer == 1) {
+                    player1.playerTimer--;
+                    twoPlayerActivity.setTimerText(player1.playerTimer + "", 1);
+                    if (player1.playerTimer == 0) {
+//                        Log.i("player 1 lost", "LOST THE GAME!");
+                        PlayerLost();
+                    }
+                }
+                if (activePlayer == 2) {
+                    player2.playerTimer--;
+                    twoPlayerActivity.setTimerText(player2.playerTimer + "", 2);
+                    if (player2.playerTimer == 0) {
+//                        Log.i("player 2 lost", "LOST THE GAME!");
+                        PlayerLost();
+                    }
+                }
+            }
+
+
+            @Override
+            public void onFinish() {
+                start();
+            }
+        };
+        timer.start();
+    }
+
     private void startGame(){
-        if(computerChoosesColor == true){
-            activePlayer = prng.nextInt(2) + 1;
-            addRandomColorToSequence();
-            Log.i("Test", "2");
-        }
-         else if(computerChoosesColor == false){
-            twoPlayerActivity.startAllBntBlink();
-            twoPlayerActivity.setMiddleText("Press a color to start!!");
-        }
+        twoPlayerActivity.startAllBntBlink();
+        twoPlayerActivity.setMiddleText("Press a color to start!!");
     }
 
     public void spillerValgteFarve (int playerID, char farve) {
-        //Hvis spillet lige er startet skal vi stoppe alle de blinkende knapper
+        //Hvis spillet lige er startet skal vi stoppe alle de blinkende knapper og
+        //sætte den aktive spiller til den første der trykkede
         if(sequence.getAmount() == 0){
             activePlayer = playerID;
             twoPlayerActivity.stopAllBntBlink();
@@ -103,22 +95,14 @@ public class GameController {
             lightButton(playerID, farve);
             if (activePlayer == playerID) {
                 if (addColor) {
-                    if(computerChoosesColor == false) {
-                        addColorToSequence(farve);
-                        ChangePlayer();
-                        //twoPlayerActivity.setMiddleText("player " + activePlayer + " START!");
-                    }
+                    addColorToSequence(farve);
+                    ChangePlayer();
                 } else {
                     if (CheckCorrectSequenceColor(farve)) {
                         IncrementColorIndex();
                         if (HasFinishedSequence()) {
                             //twoPlayerActivity.setMiddleText("player " + activePlayer + " choose color!");
                             playerSuccede();
-
-                            if(computerChoosesColor == true){
-                                addRandomColorToSequence();
-                                ChangePlayer();
-                            }
                         }
                     } else {
                         PlayerLost();
@@ -210,8 +194,10 @@ public class GameController {
         //Test
         Log.i("Player", "Player " + activePlayer + " LOST!!");
         twoPlayerActivity.playerLost(activePlayer);
-        twoPlayerActivity.setMiddleText("Press to restart");
+        twoPlayerActivity.setMiddleText("You remembered " + sequence.getAmount() + " colors " + "\nPress to restart");
         twoPlayerActivity.stopAllBntBlink(); //For en sikkerheds skyld stop alle knapper der blinker hvis nogle gør
+        twoPlayerActivity.setPlayerText(activePlayer, "YOU LOST!!");
+        twoPlayerActivity.setPlayerText(GetNextPlayerID(), "YOU WON!!");
 
         isGameOver = true;
 
@@ -241,6 +227,9 @@ public class GameController {
         twoPlayerActivity.setMiddleText("Next player\nRemember sequence");
     }
 
+    /*
+    Returns the new Player if active player is 1 -> 2 else 2 -> 1
+     */
     private int GetNextPlayerID(){
         if(activePlayer == 1){
             return 2;

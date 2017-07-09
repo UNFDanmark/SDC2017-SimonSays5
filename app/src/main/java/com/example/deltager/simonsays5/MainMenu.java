@@ -1,5 +1,7 @@
 package com.example.deltager.simonsays5;
 
+
+
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import android.view.View;
 import static com.example.deltager.simonsays5.R.layout.player2;
 import android.media.MediaPlayer;
 import android.widget.Button;
+
 
 public class MainMenu extends Activity {
 
@@ -23,17 +26,18 @@ public class MainMenu extends Activity {
     //MediaPlayer beginGameMP;
     public void player2b (View view) {
         //beginGameMP.start();
-        starttwoPlayer(false, false);
+        starttwoPlayer(false, 0, 0);
     }
 
     public void player2bTimer (View view) {
-        starttwoPlayer(false, true);
+        starttwoPlayer(true, 100, 5);
     }
 
-    private void starttwoPlayer(boolean computerChoosesColor, boolean useTimer){
+    private void starttwoPlayer(boolean useTimer, int player1Timer, int player2Timer){
         Intent intent = new Intent(this, TwoPlayerActivity.class);
-        intent.putExtra("ComputerChoose", computerChoosesColor);
         intent.putExtra("useTimer", useTimer);
+        intent.putExtra("player1Timer", player1Timer);
+        intent.putExtra("player2Timer", player2Timer);
         startActivity(intent);
     }
 }

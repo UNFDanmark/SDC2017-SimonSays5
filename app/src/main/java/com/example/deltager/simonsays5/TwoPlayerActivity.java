@@ -57,12 +57,12 @@ public class TwoPlayerActivity extends Activity {
 //        player2 = new Player(2, gameController);
 //        gameController = new GameController(this);
 
-        p1RødKnap = new simonSaysButton(0xFFFF5F51, 0xFFEA4335, findViewById(R.id.redP1Btn));
+        p1RødKnap = new simonSaysButton(0xFFF45942, 0xFFFF2623, findViewById(R.id.redP1Btn));
         p1BlåKnap = new simonSaysButton(0xFF42A3F4, 0xFF4285F4, findViewById(R.id.blueP1Bnt));
         p1GrønKnap = new simonSaysButton(0xFF17BB4A, 0xFF34A853, findViewById(R.id.greenP1Bnt));
         p1GulKnap = new simonSaysButton(0xFFFFD430, 0xFFFBBC05, findViewById(R.id.yellowP1Btn));
 
-        p2RødKnap = new simonSaysButton(0xFFFF5F51, 0xFFEA4335, findViewById(R.id.redP2Btn));
+        p2RødKnap = new simonSaysButton(0xFFF45942, 0xFFFF2623, findViewById(R.id.redP2Btn));
         p2BlåKnap = new simonSaysButton(0xFF42A3F4, 0xFF4285F4, findViewById(R.id.blueP2Btn));
         p2GrønKnap = new simonSaysButton(0xFF17BB4A, 0xFF34A853, findViewById(R.id.greenP2Btn));
         p2GulKnap = new simonSaysButton(0xFFFFD430, 0xFFFBBC05, findViewById(R.id.yellowP2Btn));
@@ -70,9 +70,9 @@ public class TwoPlayerActivity extends Activity {
         bgStartFarve = getWindow().getDecorView().getSolidColor();
 
         gameController = new GameController(this,
-                getIntent().getBooleanExtra("ComputerChoose", false),
-                getIntent().getBooleanExtra("useTimer", false));
-        Log.i("onCreate", "onCreate finished");
+                getIntent().getBooleanExtra("useTimer", false),
+                new Player(1, getIntent().getIntExtra("player1Timer", 0)),
+                new Player(2, getIntent().getIntExtra("player2Timer", 0)));
     }
 
     public void P1BtnStartBlinking() {
@@ -249,13 +249,13 @@ public class TwoPlayerActivity extends Activity {
         bgIsBlinking = true;
 
         //Sæt kanppen til at være en valgt farve
-        findViewById(R.id.restartGameBtn).setBackgroundColor(0x8F7590C2);
+        findViewById(R.id.restartGameBtn).setBackgroundColor(0x8FC3FFF1);
         bgIsColorOn = true; //Så colorOn så den bliver skiftet til transparent så den ikke har dobbelt tid
 
         new CountDownTimer(bgBlinkTime, bgBlinkTime){
             public void onTick(long millisUntilFinished){
                 if(bgIsColorOn == false){
-                    findViewById(R.id.restartGameBtn).setBackgroundColor(0x8F7590C2);
+                    findViewById(R.id.restartGameBtn).setBackgroundColor(0x8FC3FFF1);
                     bgIsColorOn = true;
                 } else if(bgIsColorOn == true){
                     findViewById(R.id.restartGameBtn).setBackgroundColor(Color.TRANSPARENT);
@@ -356,6 +356,14 @@ public class TwoPlayerActivity extends Activity {
             ((TextView) findViewById(R.id.player1Timer)).setText(timerText);
         } else {
             ((TextView) findViewById(R.id.player2Timer)).setText(timerText);
+        }
+    }
+
+    public void setPlayerText(int playerID, String text){
+        if(playerID == 1){
+            ((TextView)findViewById(R.id.p1TopText)).setText(text);
+        } else if(playerID == 2) {
+            ((TextView)findViewById(R.id.p2TopText)).setText(text);
         }
     }
 }
