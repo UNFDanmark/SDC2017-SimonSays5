@@ -16,7 +16,7 @@ public class GameController {
     private SimonSaysSequence sequence;
     private int currentColorIndex;
 
-    private int activePlayer = 1;
+    private int activePlayer;
     private boolean addColor = true;
     private boolean isGameOver;
 
@@ -27,6 +27,9 @@ public class GameController {
     public GameController (final TwoPlayerActivity twoPlayerActivity){
         sequence = new SimonSaysSequence();
         this.twoPlayerActivity = twoPlayerActivity;
+
+        activePlayer = 0;
+
 
 
         player1 = new Player(1);
@@ -41,10 +44,18 @@ public class GameController {
                 if (activePlayer == 1) {
                     player1.playerTimer--;
                     twoPlayerActivity.setTimerText(player1.playerTimer + "", 1);
+                    if (player1.playerTimer == 0){
+//                        Log.i("player 1 lost", "LOST THE GAME!");
+                        PlayerLost();
+                    }
                 }
                 if (activePlayer == 2) {
                     player2.playerTimer--;
                     twoPlayerActivity.setTimerText(player2.playerTimer + "", 2);
+                    if (player2.playerTimer == 0){
+//                        Log.i("player 2 lost", "LOST THE GAME!");
+                        PlayerLost();
+                    }
                 }
             }
 
@@ -166,6 +177,8 @@ public class GameController {
         twoPlayerActivity.stopAllBntBlink(); //For en sikkerheds skyld stop alle knapper der blinker hvis nogle gør
 
         isGameOver = true;
+
+        activePlayer = 0;
     }
 
     /*
