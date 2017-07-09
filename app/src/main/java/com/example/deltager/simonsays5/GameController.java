@@ -200,6 +200,8 @@ public class GameController {
         twoPlayerActivity.setPlayerText(activePlayer, "YOU LOST!!");
         twoPlayerActivity.setPlayerText(GetNextPlayerID(), "YOU WON!!");
 
+        twoPlayerActivity.checkUpdateHighscore(sequence.getAmount());
+
         isGameOver = true;
 
         activePlayer = 0;

@@ -113,7 +113,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#9E2C29"
+            android:background="#FF2623"
             android:onClick="P1TrykkedePåRød"
             android:text="" />
 

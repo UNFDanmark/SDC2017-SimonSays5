@@ -1,15 +1,15 @@
 package com.example.deltager.simonsays5;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 import android.media.MediaPlayer;
 
@@ -62,12 +62,12 @@ public class TwoPlayerActivity extends Activity {
 //        player2 = new Player(2, gameController);
 //        gameController = new GameController(this);
 
-        p1RødKnap = new simonSaysButton(0xFFF45942, 0xFFFF2623, findViewById(R.id.redP1Btn));
+        p1RødKnap = new simonSaysButton(0xFFF45942, 0xFFea4335, findViewById(R.id.redP1Btn));
         p1BlåKnap = new simonSaysButton(0xFF42A3F4, 0xFF4285F4, findViewById(R.id.blueP1Bnt));
         p1GrønKnap = new simonSaysButton(0xFF17BB4A, 0xFF34A853, findViewById(R.id.greenP1Bnt));
         p1GulKnap = new simonSaysButton(0xFFFFD430, 0xFFFBBC05, findViewById(R.id.yellowP1Btn));
 
-        p2RødKnap = new simonSaysButton(0xFFF45942, 0xFFFF2623, findViewById(R.id.redP2Btn));
+        p2RødKnap = new simonSaysButton(0xFFF45942, 0xFFea4335, findViewById(R.id.redP2Btn));
         p2BlåKnap = new simonSaysButton(0xFF42A3F4, 0xFF4285F4, findViewById(R.id.blueP2Btn));
         p2GrønKnap = new simonSaysButton(0xFF17BB4A, 0xFF34A853, findViewById(R.id.greenP2Btn));
         p2GulKnap = new simonSaysButton(0xFFFFD430, 0xFFFBBC05, findViewById(R.id.yellowP2Btn));
@@ -82,6 +82,22 @@ public class TwoPlayerActivity extends Activity {
     private void playSound(int sound){
         buttonPlayer = MediaPlayer.create(this, sound);
         buttonPlayer.start();
+    }
+
+    public void checkUpdateHighscore(int score){
+        if(score > Prefs.getHighscore(this)){
+            Prefs.setHighscore(this, score);
+        }
+    }
+
+    public int getHighScore(){
+        return getSharedPreferences(String.valueOf("com.example.deltager.simonsays5.prefs"), Context.MODE_PRIVATE).getInt("Highscore", 0);
+    }
+
+    private void setHighScore(int score){
+        SharedPreferences.Editor editor = getSharedPreferences(String.valueOf("com.example.deltager.simonsays5.prefs"), Context.MODE_PRIVATE).edit();
+        editor.putInt("Highscore", score);
+        editor.commit();
     }
 
     public void P1BtnStartBlinking() {

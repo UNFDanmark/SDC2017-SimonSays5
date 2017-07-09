@@ -77,6 +77,15 @@
                 android:onClick="player2bTimer"
                 android:text="2 PLAYER - SPEED MODE"></Button>
 
+            <TextView
+                android:id="@+id/highscoreTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearLayout3"
+                android:layout_centerHorizontal="true"
+                android:text="Highscore: 1"
+                android:textSize="20sp"/>
+
             <!-- 70% Width End-->
 
         </RelativeLayout>
