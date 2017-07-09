@@ -23,10 +23,17 @@ public class MainMenu extends Activity {
     //MediaPlayer beginGameMP;
     public void player2b (View view) {
         //beginGameMP.start();
-        Intent intent = new Intent(this, TwoPlayerActivity.class);
-        startActivity(intent);
+        starttwoPlayer(false, false);
     }
-    public void player2bTimer (View view) {
 
+    public void player2bTimer (View view) {
+        starttwoPlayer(false, true);
+    }
+
+    private void starttwoPlayer(boolean computerChoosesColor, boolean useTimer){
+        Intent intent = new Intent(this, TwoPlayerActivity.class);
+        intent.putExtra("ComputerChoose", computerChoosesColor);
+        intent.putExtra("useTimer", useTimer);
+        startActivity(intent);
     }
 }

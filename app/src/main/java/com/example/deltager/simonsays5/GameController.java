@@ -3,6 +3,8 @@ package com.example.deltager.simonsays5;
 import android.os.CountDownTimer;
 import android.util.Log;
 
+import java.util.Random;
+
 /**
  * Created by deltager on 06-07-17.
  */
@@ -22,15 +24,20 @@ public class GameController {
 
     //Gamemode where the computer chooses the color and the two players have to be to fastest
     private boolean computerChoosesColor;
-    private boolean isP1Done, isP2Done;
+    private Random prng;
 
-    public GameController (final TwoPlayerActivity twoPlayerActivity){
+    private boolean useTimer;
+
+    public GameController (final TwoPlayerActivity twoPlayerActivity, boolean computerChoosesColor, boolean useTimer){
         sequence = new SimonSaysSequence();
         this.twoPlayerActivity = twoPlayerActivity;
+        this.computerChoosesColor = computerChoosesColor;
+        this.useTimer = useTimer;
 
         activePlayer = 0;
 
 
+        prng = new Random(100);
 
         player1 = new Player(1);
         player2 = new Player(2);
@@ -38,70 +45,83 @@ public class GameController {
         Log.i("GC Constructor", "Step 2");
         Log.i("GC Constructor", "Player 1: " + player1.playerTimer);
 
-        CountDownTimer timer = new CountDownTimer(1000, 1000) {
-            @Override
-            public void onTick(long l) {
-                if (activePlayer == 1) {
-                    player1.playerTimer--;
-                    twoPlayerActivity.setTimerText(player1.playerTimer + "", 1);
-                    if (player1.playerTimer == 0){
+        if(this.useTimer) {
+            CountDownTimer timer = new CountDownTimer(1000, 1000) {
+                @Override
+                public void onTick(long l) {
+                    if (activePlayer == 1) {
+                        player1.playerTimer--;
+                        twoPlayerActivity.setTimerText(player1.playerTimer + "", 1);
+                        if (player1.playerTimer == 0) {
 //                        Log.i("player 1 lost", "LOST THE GAME!");
-                        PlayerLost();
+                            PlayerLost();
+                        }
                     }
-                }
-                if (activePlayer == 2) {
-                    player2.playerTimer--;
-                    twoPlayerActivity.setTimerText(player2.playerTimer + "", 2);
-                    if (player2.playerTimer == 0){
+                    if (activePlayer == 2) {
+                        player2.playerTimer--;
+                        twoPlayerActivity.setTimerText(player2.playerTimer + "", 2);
+                        if (player2.playerTimer == 0) {
 //                        Log.i("player 2 lost", "LOST THE GAME!");
-                        PlayerLost();
+                            PlayerLost();
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onFinish() {
-                start();
-            }
-        };
-        timer.start();
+
+                @Override
+                public void onFinish() {
+                    start();
+                }
+            };
+            timer.start();
+        }
+
         startGame();
     }
 
     private void startGame(){
-        twoPlayerActivity.startAllBntBlink();
-        twoPlayerActivity.setMiddleText("Press a color to start!!");
+        if(computerChoosesColor == true){
+            activePlayer = prng.nextInt(2) + 1;
+            addRandomColorToSequence();
+            Log.i("Test", "2");
+        }
+         else if(computerChoosesColor == false){
+            twoPlayerActivity.startAllBntBlink();
+            twoPlayerActivity.setMiddleText("Press a color to start!!");
+        }
     }
 
     public void spillerValgteFarve (int playerID, char farve) {
-        if(computerChoosesColor == true){
-
+        //Hvis spillet lige er startet skal vi stoppe alle de blinkende knapper
+        if(sequence.getAmount() == 0){
+            activePlayer = playerID;
+            twoPlayerActivity.stopAllBntBlink();
         }
-        else if(computerChoosesColor == false){
-            //Hvis spillet lige er startet skal vi stoppe alle de blinkende knapper
-            if(sequence.getAmount() == 0){
-                activePlayer = playerID;
-                twoPlayerActivity.stopAllBntBlink();
-            }
 
-            //Logik for hvis spillet er i gang
-            if(isGameOver == false) {
-                lightButton(playerID, farve);
-                if (activePlayer == playerID) {
-                    if (addColor) {
+        //Logik for hvis spillet er i gang
+        if(isGameOver == false) {
+            lightButton(playerID, farve);
+            if (activePlayer == playerID) {
+                if (addColor) {
+                    if(computerChoosesColor == false) {
                         addColorToSequence(farve);
                         ChangePlayer();
                         //twoPlayerActivity.setMiddleText("player " + activePlayer + " START!");
-                    } else {
-                        if (CheckCorrectSequenceColor(farve)) {
-                            IncrementColorIndex();
-                            if (HasFinishedSequence()) {
-                                //twoPlayerActivity.setMiddleText("player " + activePlayer + " choose color!");
-                                playerSuccede();
+                    }
+                } else {
+                    if (CheckCorrectSequenceColor(farve)) {
+                        IncrementColorIndex();
+                        if (HasFinishedSequence()) {
+                            //twoPlayerActivity.setMiddleText("player " + activePlayer + " choose color!");
+                            playerSuccede();
+
+                            if(computerChoosesColor == true){
+                                addRandomColorToSequence();
+                                ChangePlayer();
                             }
-                        } else {
-                            PlayerLost();
                         }
+                    } else {
+                        PlayerLost();
                     }
                 }
             }
@@ -109,7 +129,24 @@ public class GameController {
     }
 
     private  void addRandomColorToSequence(){
-
+        int colorToAdd = prng.nextInt(3);
+        char farveToAdd = '-';
+        switch (colorToAdd){
+            case(0):
+                farveToAdd = 'R';
+                break;
+            case(1):
+                farveToAdd = 'G';
+                break;
+            case(2):
+                farveToAdd = 'B';
+                break;
+            case(3):
+                farveToAdd = 'Y';
+                break;
+        }
+        sequence.addChar(farveToAdd);
+        twoPlayerActivity.blinkBothPlayers(farveToAdd);
     }
 
     private void addColorToSequence(char color){

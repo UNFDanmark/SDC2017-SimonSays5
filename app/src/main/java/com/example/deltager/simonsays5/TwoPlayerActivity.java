@@ -29,7 +29,7 @@ public class TwoPlayerActivity extends Activity {
     private boolean P1BtnIsBlinking, P1BtnIsOn;
     private boolean P2BtnIsBlinking, P2BtnIsOn;
 
-    private int blinkingInterval = 200;
+    private int blinkingInterval = 500;
 
     private int bgBlinkTime = 350, bgStartFarve;
     private boolean bgIsBlinking, bgIsColorOn;
@@ -46,8 +46,6 @@ public class TwoPlayerActivity extends Activity {
 //        player2 = new Player(2, gameController);
 //        gameController = new GameController(this);
 
-        gameController = new GameController(this);
-
         p1RødKnap = new simonSaysButton(0xFFFF5F51, 0xFFEA4335, findViewById(R.id.redP1Btn));
         p1BlåKnap = new simonSaysButton(0xFF42A3F4, 0xFF4285F4, findViewById(R.id.blueP1Bnt));
         p1GrønKnap = new simonSaysButton(0xFF17BB4A, 0xFF34A853, findViewById(R.id.greenP1Bnt));
@@ -59,6 +57,10 @@ public class TwoPlayerActivity extends Activity {
         p2GulKnap = new simonSaysButton(0xFFFFD430, 0xFFFBBC05, findViewById(R.id.yellowP2Btn));
 
         bgStartFarve = getWindow().getDecorView().getSolidColor();
+
+        gameController = new GameController(this,
+                getIntent().getBooleanExtra("ComputerChoose", false),
+                getIntent().getBooleanExtra("useTimer", false));
         Log.i("onCreate", "onCreate finished");
     }
 
@@ -127,6 +129,54 @@ public class TwoPlayerActivity extends Activity {
             }
         }.start();
 
+    }
+
+    public void blinkBothPlayers(final char farve){
+        switch (farve){
+            case('R'):
+                p1RødKnap.changeToOn();
+                p2RødKnap.changeToOn();
+                break;
+            case('G'):
+                p1GrønKnap.changeToOn();
+                p2GrønKnap.changeToOn();
+                break;
+            case('B'):
+                p1BlåKnap.changeToOn();
+                p2BlåKnap.changeToOn();
+                break;
+            case('Y'):
+                p1GulKnap.changeToOn();
+                p2GulKnap.changeToOn();
+                break;
+        }
+
+        new CountDownTimer(blinkingInterval, blinkingInterval){
+            public void onTick (long millisUntilFinished){
+
+            }
+
+            public void onFinish(){
+                switch (farve){
+                    case('R'):
+                        p1RødKnap.changeToOff();
+                        p2RødKnap.changeToOff();
+                        break;
+                    case('G'):
+                        p1GrønKnap.changeToOff();
+                        p2GrønKnap.changeToOff();
+                        break;
+                    case('B'):
+                        p1BlåKnap.changeToOff();
+                        p2BlåKnap.changeToOff();
+                        break;
+                    case('Y'):
+                        p1GulKnap.changeToOff();
+                        p2GulKnap.changeToOff();
+                        break;
+                }
+            }
+        }.start();
     }
 
     public void startAllBntBlink(){
