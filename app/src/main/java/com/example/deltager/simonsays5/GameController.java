@@ -201,7 +201,7 @@ public class GameController {
         //Test
         Log.i("Player", "Player " + activePlayer + " LOST!!");
         twoPlayerActivity.playerLost(activePlayer);
-        twoPlayerActivity.setMiddleText("Sequence was " + sequence.getAmount() + " color" + ((sequence.getAmount()  != 1)?"s":"") + "\nPress to restart");
+        twoPlayerActivity.setMiddleText("You remembered " + (sequence.getAmount() - 1) + " color" + (((sequence.getAmount() - 1)  != 1)?"s":"") + "\nPress to restart");
         twoPlayerActivity.stopAllBntBlink(); //For en sikkerheds skyld stop alle knapper der blinker hvis nogle gør
         twoPlayerActivity.setPlayerText(activePlayer, "YOU LOST!!");
         twoPlayerActivity.setPlayerText(GetNextPlayerID(), "YOU WON!!");
