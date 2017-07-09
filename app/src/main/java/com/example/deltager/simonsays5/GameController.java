@@ -195,12 +195,11 @@ public class GameController {
         //Test
         Log.i("Player", "Player " + activePlayer + " LOST!!");
         twoPlayerActivity.playerLost(activePlayer);
-        twoPlayerActivity.setMiddleText("You remembered " + sequence.getAmount() + " color" + ((sequence.getAmount() > 1)?"s":"") + "\nPress to restart");
+        twoPlayerActivity.setMiddleText("You remembered " + currentColorIndex + " color" + ((currentColorIndex  != 1)?"s":"") + "\nPress to restart");
         twoPlayerActivity.stopAllBntBlink(); //For en sikkerheds skyld stop alle knapper der blinker hvis nogle gør
         twoPlayerActivity.setPlayerText(activePlayer, "YOU LOST!!");
         twoPlayerActivity.setPlayerText(GetNextPlayerID(), "YOU WON!!");
-
-        twoPlayerActivity.checkUpdateHighscore(sequence.getAmount());
+        twoPlayerActivity.checkUpdateHighscore(currentColorIndex);
 
         isGameOver = true;
 
