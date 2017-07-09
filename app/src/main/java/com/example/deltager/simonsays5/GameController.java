@@ -20,13 +20,13 @@ public class GameController {
     private boolean addColor = true;
     private boolean isGameOver;
 
+    //Gamemode where the computer chooses the color and the two players have to be to fastest
+    private boolean computerChoosesColor;
+    private boolean isP1Done, isP2Done;
+
     public GameController (final TwoPlayerActivity twoPlayerActivity){
-        Log.i("GC Constructor", "Step 1");
         sequence = new SimonSaysSequence();
         this.twoPlayerActivity = twoPlayerActivity;
-        // Dette var den gamle måde
-//        player1 = new Player(1, this);
-//        player2 = new Player(2, this);
 
 
         player1 = new Player(1);
@@ -61,31 +61,36 @@ public class GameController {
         twoPlayerActivity.startAllBntBlink();
         twoPlayerActivity.setMiddleText("Press a color to start!!");
     }
-    public void spillerValgteFarve (int playerID, char farve) {
-        Log.i("TESTEST", "TESTEST");
-        //Hvis spillet lige er startet skal vi stoppe alle de blinkende knapper
-        if(sequence.getAmount() == 0){
-            activePlayer = playerID;
-            twoPlayerActivity.stopAllBntBlink();
-        }
 
-        //Logik for hvis spillet er i gang
-        if(isGameOver == false) {
-            lightButton(playerID, farve);
-            if (activePlayer == playerID) {
-                if (addColor) {
-                    addColorToSequence(farve);
-                    ChangePlayer();
-                    //twoPlayerActivity.setMiddleText("player " + activePlayer + " START!");
-                } else {
-                    if (CheckCorrectSequenceColor(farve)) {
-                        IncrementColorIndex();
-                        if (HasFinishedSequence()) {
-                            //twoPlayerActivity.setMiddleText("player " + activePlayer + " choose color!");
-                            playerSuccede();
-                        }
+    public void spillerValgteFarve (int playerID, char farve) {
+        if(computerChoosesColor == true){
+
+        }
+        else if(computerChoosesColor == false){
+            //Hvis spillet lige er startet skal vi stoppe alle de blinkende knapper
+            if(sequence.getAmount() == 0){
+                activePlayer = playerID;
+                twoPlayerActivity.stopAllBntBlink();
+            }
+
+            //Logik for hvis spillet er i gang
+            if(isGameOver == false) {
+                lightButton(playerID, farve);
+                if (activePlayer == playerID) {
+                    if (addColor) {
+                        addColorToSequence(farve);
+                        ChangePlayer();
+                        //twoPlayerActivity.setMiddleText("player " + activePlayer + " START!");
                     } else {
-                        PlayerLost();
+                        if (CheckCorrectSequenceColor(farve)) {
+                            IncrementColorIndex();
+                            if (HasFinishedSequence()) {
+                                //twoPlayerActivity.setMiddleText("player " + activePlayer + " choose color!");
+                                playerSuccede();
+                            }
+                        } else {
+                            PlayerLost();
+                        }
                     }
                 }
             }
