@@ -10,7 +10,7 @@ import android.content.SharedPreferences;
 public final class Prefs {
 
     public static int getInt(Context context, String key){
-        return context.getSharedPreferences("com.example.deltager.simonsays5.prefs", Context.MODE_PRIVATE).getInt(key, 0);
+        return getSharedPrefs(context).getInt(key, 0);
     }
 
     public static void setInt(Context context, String key, int value){
@@ -20,7 +20,11 @@ public final class Prefs {
     }
 
     private static SharedPreferences.Editor getEditor(Context context){
-        return context.getSharedPreferences("com.example.deltager.simonsays5.prefs", Context.MODE_PRIVATE).edit();
+        return getSharedPrefs(context).edit();
+    }
+
+    private static SharedPreferences getSharedPrefs(Context context){
+        return context.getSharedPreferences("com.example.deltager.simonsays5.prefs", Context.MODE_PRIVATE);
     }
 
     //Presets funtions
